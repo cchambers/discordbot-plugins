@@ -103,6 +103,11 @@ exports.spells = {
 	usage: "<search query>",
 	description: "returns spell list count",
 	process: function(bot, msg, args) {
-        bot.sendMessage(msg.channel, "I have data on " + spellList.length + " spells. Search for one with !spell <spellname>"); 
+        diretoryTreeToObj(dirTree, function(err, res){
+            if(err)
+                console.error(err);
+            spellList = res;
+            bot.sendMessage(msg.channel, "I have data on " + spellList.length + " spells. Search for one with !spell <spellname>"); 
+        });
 	}
 }

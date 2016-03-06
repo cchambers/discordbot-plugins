@@ -32,13 +32,13 @@ var diretoryTreeToObj = function(dir, done) {
     });
 };
 
-var spellList;
-var dirTree = ('/home/discordbot/plugins/Spells/data');
+var mobList;
+var dirTree = ('/home/discordbot/plugins/Monsters/data');
 
 diretoryTreeToObj(dirTree, function(err, res){
     if(err)
         console.error(err);
-    spellList = res;
+    mobList = res;
 });
 
 function search(array, term) {
@@ -52,15 +52,15 @@ function search(array, term) {
 
 
 exports.commands = [
-	"monster", // gives dnd 5e spell info on anything that matches
-    "monsters" // shows data count
+	"mob", // gives dnd 5e spell info on anything that matches
+    "mobs" // shows data count
 ];
 
-exports.monster = {
+exports.mob = {
 	usage: "<search query>",
-	description: "returns monster data",
+	description: "returns mob data",
 	process: function(bot, msg, args) {
-        var results = search(monsterList, args);
+        var results = search(mobList, args);
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
@@ -73,22 +73,21 @@ exports.monster = {
                 console.log(results, others);
             }
             if (results.length > 1) {
-                bot.sendMessage(msg.channel, "I found **" + results.length + "** monsters matching that term: ```" + results.join(", ") + "```");
+                bot.sendMessage(msg.channel, "I found **" + results.length + "** mobs matching that term: ```" + results.join(", ") + "```");
             } else {
                 var file = results[0].replace(/\s/g, "-") + ".markdown";
                 console.log("Trying to pull " + file); 
                 var filename = '/home/discordbot/plugins/Monsters/data/' + file;
                 fs.readFile(filename, 'utf8', function (err, data) {
                     if (err) throw err;
-                    var edits = data.split("---");
-                    var title = results[0].toUpperCase();
+                    //var title = results[0].toUpperCase();
                     // var tags = edits[1].match(/(?:tags:\s+")(.+)(?:")/g);
-                    var meat = edits[2];
+                    var meat = data;
                     if (others.length > 0) {
-                        bot.sendMessage(msg.channel, "I found **" + others.length + "** other monsters matching that term: ```" + others.join(", ") + "```");
+                        bot.sendMessage(msg.channel, "I found **" + others.length + "** other mobs matching that term: ```" + others.join(", ") + "```");
                     }
                     setTimeout( function () {
-                         bot.sendMessage(msg.channel, "__**" + title + "**__ " + meat);
+                         bot.sendMessage(msg.channel, meat);
                     },200);
                 });
             }
@@ -99,10 +98,15 @@ exports.monster = {
 }
 
 
-exports.monsters = {
+exports.mobs = {
 	usage: "<search query>",
-	description: "returns monster list count",
+	description: "returns mob list count",
 	process: function(bot, msg, args) {
-        bot.sendMessage(msg.channel, "I have data on " + spellList.length + " monsters. Search for one with !monster <monstername>"); 
+        diretoryTreeToObj(dirTree, function(err, res){
+            if(err)
+                console.error(err);
+            mobList = res;
+            bot.sendMessage(msg.channel, "I have data on " + mobList.length + " mobs. Search for one with !mob <mobname>"); 
+        });
 	}
 }
