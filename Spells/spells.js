@@ -93,7 +93,7 @@ exports.spell = {
                 });
             }
         } else {
-            bot.sendMessage(msg.channel, "I have nothing on that...."); 
+            bot.sendMessage(msg.channel, "I have nothing on that..."); 
         }
 	}
 }
