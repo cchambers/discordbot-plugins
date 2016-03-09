@@ -4,10 +4,10 @@ var AuthDetails = require("../../auth.json");
 var fs = require('fs');
 var path = require('path');
 
-var diretoryTreeToObj = function(dir, done) {
+var diretoryTreeToObj = function (dir, done) {
     var results = [];
 
-    fs.readdir(dir, function(err, list) {
+    fs.readdir(dir, function (err, list) {
         if (err)
             return done(err);
 
@@ -16,9 +16,9 @@ var diretoryTreeToObj = function(dir, done) {
         if (!pending)
             return done(null, {name: path.basename(dir), type: 'folder', children: results});
 
-        list.forEach(function(file) {
+        list.forEach( function (file) {
             file = path.resolve(dir, file);
-            fs.stat(file, function(err, stat) {
+            fs.stat(file, function (err, stat) {
                 if (stat && stat.isDirectory()) {
                    
                 } else {
@@ -35,7 +35,7 @@ var diretoryTreeToObj = function(dir, done) {
 var mobList;
 var dirTree = ('/home/discordbot/plugins/Monsters/data');
 
-diretoryTreeToObj(dirTree, function(err, res){
+diretoryTreeToObj(dirTree, function (err, res){
     if(err)
         console.error(err);
     mobList = res;
@@ -44,7 +44,7 @@ diretoryTreeToObj(dirTree, function(err, res){
 function search(array, term) {
     var results;
     term = term.toLowerCase();
-    results = array.filter(function(entry) {
+    results = array.filter( function (entry) {
         return entry.toLowerCase().indexOf(term) !== -1;
     });
     return results;
@@ -57,23 +57,21 @@ exports.commands = [
 ];
 
 exports.mob = {
-	usage: "<search query>",
-	description: "returns mob data",
-	process: function(bot, msg, args) {
+	usage: "<search query> || !mob gob",
+	description: "Returns mob data on whatever ",
+	process: function (bot, msg, args) {
         var results = search(mobList, args);
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
              
             if (perfect >= 0) {
-                var holdarr = results;
                 var single = results.splice(perfect, 1);
                 others = results;
                 results = single;
-                console.log(results, others);
             }
             if (results.length > 1) {
-                bot.sendMessage(msg.channel, "I found **" + results.length + "** mobs matching that term: ```" + results.join(", ") + "```");
+                bot.sendMessage(msg.channel, "I found **" + results.length + "** mobs matching that term: ```" + results.join (", ") + "```");
             } else {
                 var file = results[0].replace(/\s/g, "-") + ".markdown";
                 console.log("Trying to pull " + file); 
@@ -84,7 +82,7 @@ exports.mob = {
                     // var tags = edits[1].match(/(?:tags:\s+")(.+)(?:")/g);
                     var meat = data;
                     if (others.length > 0) {
-                        bot.sendMessage(msg.channel, "I found **" + others.length + "** other mobs matching that term: ```" + others.join(", ") + "```");
+                        bot.sendMessage(msg.channel, "I found **" + others.length + "** other mobs matching that term: ```" + others.join (", ") + "```");
                     }
                     setTimeout( function () {
                          bot.sendMessage(msg.channel, meat);
@@ -99,10 +97,10 @@ exports.mob = {
 
 
 exports.mobs = {
-	usage: "<search query>",
-	description: "returns mob list count",
-	process: function(bot, msg, args) {
-        diretoryTreeToObj(dirTree, function(err, res){
+	usage: "",
+	description: "Reloads mobs and shows count.",
+	process: function (bot, msg, args) {
+        diretoryTreeToObj(dirTree, function (err, res){
             if(err)
                 console.error(err);
             mobList = res;

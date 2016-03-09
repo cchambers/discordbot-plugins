@@ -57,8 +57,8 @@ exports.commands = [
 ];
 
 exports.spell = {
-	usage: "<search query>",
-	description: "returns spell data",
+	usage: "<search query> || ex: !spell arms",
+	description: "Returns spell data.",
 	process: function(bot, msg, args) {
         var results = search(spellList, args);
         var others = [];
@@ -66,7 +66,6 @@ exports.spell = {
             var perfect = results.indexOf( args.toLowerCase() );
              
             if (perfect >= 0) {
-                var holdarr = results;
                 var single = results.splice(perfect, 1);
                 others = results;
                 results = single;
@@ -83,12 +82,13 @@ exports.spell = {
                     var edits = data.split("---");
                     var title = results[0].toUpperCase();
                     // var tags = edits[1].match(/(?:tags:\s+")(.+)(?:")/g);
+                    var tags = edits[1].split("tags:")[1];
                     var meat = edits[2];
                     if (others.length > 0) {
                         bot.sendMessage(msg.channel, "I found **" + others.length + "** other spells matching that term: ```" + others.join(", ") + "```");
                     }
                     setTimeout( function () {
-                         bot.sendMessage(msg.channel, "__**" + title + "**__ " + meat);
+                         bot.sendMessage(msg.channel, "__**" + title + "**__ ```" + tags + "``` " + meat);
                     },200);
                 });
             }
@@ -100,8 +100,8 @@ exports.spell = {
 
 
 exports.spells = {
-	usage: "<search query>",
-	description: "returns spell list count",
+	usage: "",
+	description: "Reloads spells and shows count.",
 	process: function(bot, msg, args) {
         diretoryTreeToObj(dirTree, function(err, res){
             if(err)
