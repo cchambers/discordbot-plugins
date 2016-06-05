@@ -84,6 +84,7 @@ exports.background = {
                     }
                     var messages = meat.split("===");
                     for (var x = 0; x < messages.length; x++) {
+                        console.log("Message "+x+" length: ", messages[x].length);
                         setTimeout( function () {
                                 bot.sendMessage(msg.channel, messages[x]);
                         },  200 * x);
