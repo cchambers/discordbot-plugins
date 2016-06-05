@@ -107,6 +107,7 @@ exports.spells = {
             if(err)
                 console.error(err);
             spellList = res;
+            var allSpells = spellList.join(", ");
             bot.sendMessage(msg.channel, "I have data on " + spellList.length + " spells. Search for one with !spell <spellname>"); 
         });
 	}

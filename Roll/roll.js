@@ -54,7 +54,7 @@ exports.roll = {
             var eachDie = suffix.split("+");
             var passing = 0;
             for (var i = 0; i < eachDie.length; i++) {
-                if (eachDie[i].split("d")[0] < 50) {
+                if (eachDie[i].split("d")[0] <= 100) {
                     passing += 1;
                 };
             }
