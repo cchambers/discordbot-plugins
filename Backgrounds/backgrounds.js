@@ -26,8 +26,6 @@ var diretoryTreeToObj = function (dir, done) {
                 } else {
                     var filename = path.basename(file)
                     var item = filename.substr(0, filename.length - 9);
-                    console.log(item);
-                    // what
                     results.push(item);
                     if (!--pending)
                         done(null, results);
@@ -48,7 +46,6 @@ diretoryTreeToObj(dirTree, function (err, res) {
 
 function search(array, term) {
     var results;
-    term = term.toLowerCase();
     results = array.filter(function (entry) {
         return entry.toLowerCase().indexOf(term) !== -1;
     });
@@ -72,9 +69,9 @@ exports.background = {
             }, delay);
         }
         
-        var term = args.toLowerCase().replace(/\s+/g, '-');
+        var term = args.toLowerCase();
 
-        var results = search(dataList, term);
+        var results = search(dataList, term.replace(/\s+/g, '-'));
         var others = [];
         if (results.length != 0) {
             var perfect = results.indexOf();
