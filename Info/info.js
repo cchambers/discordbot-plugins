@@ -52,7 +52,8 @@ function search(array, term) {
 
 
 exports.commands = [
-    "info"
+    "info",
+    "information"
 ];
 
 exports.info = {
@@ -67,7 +68,7 @@ exports.info = {
         
         var term = args.toLowerCase().replace(/\s+/g, '-');
         if (term == "") {
-            bot.sendMessage(msg.channel, "The correct syntax is `!info <query>` or try '!information` to get a list.");
+            bot.sendMessage(msg.channel, "The correct syntax is `!info <query>` or try `!information` to get a list.");
             return;
         }
         
