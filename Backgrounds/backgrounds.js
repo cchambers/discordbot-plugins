@@ -63,22 +63,16 @@ exports.background = {
     description: "Returns mob data on whatever ",
     process: function (bot, msg, args) {
 
-        function sendMessages(messages, channel) {
-            for (var x = 0; x < messages.length; x++) {
-                var delay = 500 * x;
-                timeouts[x] = setTimeout( function () {
-                    var num = x;
-                    var chan = msg.channel;
-                    bot.sendMessage(chan, messages[num]);
-                }, delay);
-            }
+        function sendMessages(message, channel, delay) {
+            setTimeout(function () {
+                bot.sendMessage(channel, message);
+            }, delay);
         }
 
         var results = search(dataList, args);
         var others = [];
         if (results.length != 0) {
             var perfect = results.indexOf(args.toLowerCase());
-
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);
                 others = results;
@@ -98,7 +92,11 @@ exports.background = {
                         bot.sendMessage(msg.channel, "I found **" + others.length + "** other backgrounds matching that term: ```" + others.join(", ") + "```");
                     }
                     var messages = meat.split("===");
-                    sendMessages(messages, msg.channel);
+                    for (var x = 0; x < messages.length; x++) {
+                        var delay = 500 * x;
+                        var channel = msg.channel;
+                        sendMessages(messages[x], channel, delay);
+                    }
                 });
             }
         } else {
