@@ -5,11 +5,11 @@ __**GUILD ARTISAN**__
  Guilds are generally found in cities large enough to support several artisans practicing the same trade. However, your guild might instead be a loose network of artisans who each work in a different village within a larger realm. Work with your DM to determine the nature of your guild.
 
 **Skill Proficiencies:** Insight, Persuasion 
+
 **Tool Proficiencies:** One type of artisan's tools
+
 **Equipment:** A set of artisan’s tools (one of your choice), a letter of introduction from your guild, a set of traveler’s clothes, and a belt pouch containing 15 gp.
-
 ===
-
 ** *Artisan's Decision* **
  As a member of your guild, you know the skills needed to create finished items from raw materials (reflected in your proficiency with a certain kind of artisan’s tools), as well as the principles of trade and good business practices. The question now is whether you abandon your trade for adventure, or take on the extra effort to weave adventuring and trade together.
 
