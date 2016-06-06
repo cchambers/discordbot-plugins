@@ -89,7 +89,7 @@ exports.background = {
                     for (var x = 0; x < messages.length; x++) {
                         
                         console.log("Message "+x+" length: ", messages[x].length);
-                        timeout[x] = setTimeout( function () {
+                        timeouts[x] = setTimeout( function () {
                             var channel = msg.channel;
                             var text = messages[x];
                             bot.sendMessage(channel, text);
