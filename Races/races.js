@@ -60,16 +60,23 @@ exports.race = {
 	usage: "<search query> || !mob gob",
 	description: "Returns mob data on whatever ",
 	process: function (bot, msg, args) {
-        var results = search(dataList, args);
+        var term = args.toLowerCase().replace(/\s/g, "-");
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is `!race <query>`"); 
+            return;
+        }
+        
+        var results = search(dataList, term);
         var others = [];
+        
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase().replace(/\s/g, "-") );
-             
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);
                 others = results;
                 results = single;
             }
+            
             if (results.length > 1) {
                 bot.sendMessage(msg.channel, "I found **" + results.length + "** races matching that term: ```" + results.join (", ") + "```");
             } else {
@@ -102,7 +109,7 @@ exports.races = {
             if(err)
                 console.error(err);
             dataList = res;
-            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " races. Search for one with !race <query>"); 
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " races. Search for one with `!race <query>`  ```" + dataList.join(", ") + "```"); 
         });
 	}
 }

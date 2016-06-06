@@ -61,7 +61,7 @@ exports.feat = {
 	process: function (bot, msg, args) {
         var term = args.toLowerCase().replace(/\s/g, "-");
         if (term == "") {
-            bot.sendMessage(msg.channel, "The correct syntax is !feat <query>"); 
+            bot.sendMessage(msg.channel, "The correct syntax is `!feat <query>`"); 
             return;
         }
         var results = search(dataList, term);
@@ -105,7 +105,7 @@ exports.feats = {
         diretoryTreeToObj(dirTree, function (err, res){
             if(err) console.error(err);
             dataList = res;
-            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " feats. Search for one with !feat <query>... ```" + dataList.join(", ") + "```"); 
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " feats. Search for one with `!feat <query>`  ```" + dataList.join(", ") + "```"); 
         });
 	}
 }

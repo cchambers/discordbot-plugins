@@ -111,7 +111,7 @@ exports.spells = {
         diretoryTreeToObj(dirTree, function(err, res){
             if (err) console.error(err);
             dataList = res;
-            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " spells. Search for one with !spell <spellname>"); 
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " spells. Search for one with `!spell <spellname>`"); 
         });
 	}
 }

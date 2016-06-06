@@ -32,13 +32,13 @@ var diretoryTreeToObj = function (dir, done) {
     });
 };
 
-var classList;
+var dataList;
 var dirTree = ('/home/discordbot/plugins/Classes/data');
 
 diretoryTreeToObj(dirTree, function (err, res){
     if(err)
         console.error(err);
-    classList = res;
+    dataList = res;
 });
 
 function search(array, term) {
@@ -60,7 +60,7 @@ exports.class = {
 	usage: "<search query> || !class gob",
 	description: "Returns class data on whatever ",
 	process: function (bot, msg, args) {
-        var results = search(classList, args);
+        var results = search(dataList, args);
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
@@ -103,8 +103,8 @@ exports.classes = {
         diretoryTreeToObj(dirTree, function (err, res){
             if(err)
                 console.error(err);
-            classList = res;
-            bot.sendMessage(msg.channel, "I have data on " + classList.length + " classes. Search for one with !class <classname>"); 
+            dataList = res;
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " classes. Search for one with `!class <classname>`  ```" + dataList.join(", ") + "```"); "); 
         });
 	}
 }

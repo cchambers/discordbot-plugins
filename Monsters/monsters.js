@@ -60,7 +60,12 @@ exports.mob = {
 	usage: "<search query> || !mob gob",
 	description: "Returns mob data on whatever ",
 	process: function (bot, msg, args) {
-        var results = search(mobList, args.replace(/\s+/g, '-'));
+        var term = args.toLowerCase().replace(/\s/g, "-");
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is `!mob <query>`"); 
+            return;
+        }
+        var results = search(mobList, term);
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
@@ -104,7 +109,7 @@ exports.mobs = {
             if(err)
                 console.error(err);
             mobList = res;
-            bot.sendMessage(msg.channel, "I have data on " + mobList.length + " mobs. Search for one with !mob <mobname>"); 
+            bot.sendMessage(msg.channel, "I have data on " + mobList.length + " mobs. Search for one with `!mob <mobname>`"); 
         });
 	}
 }
