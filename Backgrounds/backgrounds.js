@@ -65,6 +65,7 @@ exports.background = {
 
         function sendMessages(messages, channel) {
             for (var x = 0; x < messages.length; x++) {
+                var delay = 500 * x;
                 timeouts[x] = setTimeout( function () {
                     var num = x;
                     var chan = msg.channel;
