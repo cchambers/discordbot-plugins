@@ -40,7 +40,8 @@ exports.define = {
                         bot.sendMessage(msg.channel, query + ": ");
                         for (var x = 0; x < defs; x++) {
                             var delay = 200 * x;
-                            console.log(defs[x]);
+                            var def = defs[x];
+                            console.log("def #"+x+": ", def, typeof(def));
                             sendMessages(defs[x], msg.channel, delay);
                         }
                         // cycle
