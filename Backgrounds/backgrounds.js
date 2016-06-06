@@ -65,11 +65,10 @@ exports.background = {
 
         function sendMessages(messages, channel) {
             for (var x = 0; x < messages.length; x++) {
-                var channel = msg.channel;
-                var text = messages[x];
-                var delay = 500 * x;
-                setTimeout( function () {
-                    bot.sendMessage(channel, text);
+                timeouts[x] = setTimeout( function () {
+                    var num = x;
+                    var chan = msg.channel;
+                    bot.sendMessage(chan, messages[num]);
                 }, delay);
             }
         }
