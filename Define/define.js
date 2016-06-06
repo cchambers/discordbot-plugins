@@ -40,8 +40,11 @@ exports.define = {
                         for (var x = 0; x < defs.length; x++) {
                             var delay = 200 * x;
                             var def = defs[x];
-                            console.log("def #"+x+": ", def, typeof(def));
-                            sendMessages(defs[x], msg.channel, delay);
+                            if (typeof (def) == 'string') {
+                                sendMessages(defs[x], msg.channel, delay);
+                            } else {
+                                console.log("Skipping: ", defs[x]);
+                            }
                         }
                         // cycle
                     } else if (response.statusCode != 200) {
