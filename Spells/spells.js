@@ -60,7 +60,7 @@ exports.spell = {
 	usage: "<search query> || ex: !spell arms",
 	description: "Returns spell data.",
 	process: function(bot, msg, args) {
-        var results = search(spellList, args);
+        var results = search(spellList, args.replace(/\s+/g, '-'));
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );

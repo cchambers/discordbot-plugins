@@ -60,7 +60,7 @@ exports.mob = {
 	usage: "<search query> || !mob gob",
 	description: "Returns mob data on whatever ",
 	process: function (bot, msg, args) {
-        var results = search(mobList, args);
+        var results = search(mobList, args.replace(/\s+/g, '-'));
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
