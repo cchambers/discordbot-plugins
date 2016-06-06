@@ -28,8 +28,8 @@ exports.define = {
                     if (error === null) {
                         var entry = result.entry_list.entry;
                         console.log("Worked...");
-                        console.log(entry[0].def[0]);
-                        bot.sendMessage(msg.channel, query + ": " + entry[0].def[0][0]);
+                        console.log(entry[0].def[0].dt);
+                        bot.sendMessage(msg.channel, query + ": " + entry[0].def[0].dt[1]["_"]);
                         // cycle
                     } else if (response.statusCode != 200) {
                         console.log(response.statusCode);
