@@ -89,7 +89,8 @@ exports.background = {
                     for (var x = 0; x < messages.length; x++) {
                         var channel = msg.channel;
                         var text = messages[x];
-                        timeouts[x] = setTimeout(bot.sendMessage(channel, text), 200 * x);
+                        var delay = 200 * x;
+                        setTimeout( bot.sendMessage(channel, text), delay);
                     }
                 });
             }
