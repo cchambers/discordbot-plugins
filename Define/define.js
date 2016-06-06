@@ -41,7 +41,7 @@ exports.define = {
                         for (var x = 0; x < defs; x++) {
                             var delay = 200 * x;
                             console.log(defs[x]);
-                            sendMessages(defs[x]["_"], msg.channel, delay);
+                            sendMessages(defs[x], msg.channel, delay);
                         }
                         // cycle
                     } else if (response.statusCode != 200) {
