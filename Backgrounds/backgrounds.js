@@ -98,7 +98,7 @@ exports.background = {
                         bot.sendMessage(msg.channel, "I found **" + others.length + "** other backgrounds matching that term: ```" + others.join(", ") + "```");
                     }
                     var messages = meat.split("===");
-                    sendMessages(messages, channel);
+                    sendMessages(messages, msg.channel);
                 });
             }
         } else {
