@@ -63,7 +63,7 @@ exports.spell = {
         var results = search(dataList, term.replace(/\s+/g, '-'));
         
         var others = [];
-        if (results.length != 0 ) {
+        if (results.length < 0 ) {
             var perfect = results.indexOf( term.replace(/\s/g, "-") );
              
             if (perfect >= 0) {
