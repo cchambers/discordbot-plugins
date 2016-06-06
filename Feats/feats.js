@@ -43,7 +43,6 @@ diretoryTreeToObj(dirTree, function (err, res){
 
 function search(array, term) {
     var results;
-    term = term.toLowerCase();
     results = array.filter( function (entry) {
         return entry.toLowerCase().indexOf(term) !== -1;
     });
@@ -60,7 +59,8 @@ exports.feat = {
 	usage: "<search query> || !mob gob",
 	description: "Returns mob data on whatever ",
 	process: function (bot, msg, args) {
-        var results = search(dataList, args);
+        var term = args.toLowerCase().replace(/\s/g, "-");
+        var results = search(dataList, term);
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
