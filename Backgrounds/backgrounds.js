@@ -81,18 +81,18 @@ exports.background = {
                 fs.readFile(filename, 'utf8', function (err, data) {
                     if (err) throw err;
                     var meat = data;
-                    console.log("File length: ", data.length);
                     if (others.length > 0) {
                         bot.sendMessage(msg.channel, "I found **" + others.length + "** other backgrounds matching that term: ```" + others.join (", ") + "```");
                     }
                     var messages = meat.split("===");
+                    console.log("File length: ", data.length, "Messages: ", messages.length);
                     for (var x = 0; x < messages.length; x++) {
                         var channel = msg.channel;
                         var text = messages[x];
                         var delay = 200 * x;
-                        setTimeout( function (channel, text) {
+                        // setTimeout( function (channel, text) {
                             bot.sendMessage(channel, text);
-                        }, delay);
+                        // }, delay);
                     }
                 });
             }
