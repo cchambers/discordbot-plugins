@@ -4,10 +4,6 @@ var AuthDetails = require("../../auth.json");
 var fs = require('fs');
 var path = require('path');
 
-var cleverbot = require("cleverbot-node");
-talkbot = new cleverbot;
-cleverbot.prepare(function(){});
-
 var timeouts = [];
 
 var diretoryTreeToObj = function (dir, done) {
@@ -90,9 +86,14 @@ exports.background = {
                         bot.sendMessage(msg.channel, "I found **" + others.length + "** other backgrounds matching that term: ```" + others.join (", ") + "```");
                     }
                     var messages = meat.split("===");
-                    talkbot.write(messages, function (response) {
-                        bot.sendMessage(msg.channel, response.message);
-			        })
+                    for (var x = 0; x < messages.length; x++) {
+                        var channel = msg.channel;
+                        var text = messages[x];
+                        var delay = 200 * x;
+                        setTimeout( function (channel, text) {
+                            bot.sendMessage(channel, text);
+                        }, delay);
+                    }
                 });
             }
         } else {
