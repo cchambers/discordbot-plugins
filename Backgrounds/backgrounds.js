@@ -79,6 +79,9 @@ exports.background = {
                 console.log("Trying to pull " + file); 
                 var filename = '/home/discordbot/plugins/Backgrounds/data/' + file;
                 fs.readFile(filename, 'utf8', function (err, data) {
+                    setTimeout(function () {
+                        console.log("TEST");
+                    }, 1000)
                     if (err) throw err;
                     var meat = data;
                     if (others.length > 0) {
