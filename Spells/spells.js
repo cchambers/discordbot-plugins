@@ -23,7 +23,7 @@ var diretoryTreeToObj = function(dir, done) {
                    
                 } else {
                     var filename = path.basename(file)
-                    results.push(filename.substr(0, filename.length-9).replace(/-/g, " "));
+                    results.push(filename.substr(0, filename.length-9));
                     if (!--pending)
                         done(null, results);
                 }
