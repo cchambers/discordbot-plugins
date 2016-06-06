@@ -19,6 +19,6 @@ You spent your youth under the sway of a dread pirate, a ruthless cut-throat who
 
 If you decide that your sailing career involved piracy, you can choose the Bad Reputation feature (see guide) instead of the Ship’s Passage feature.
 
-***Variant Feature: Bad Reputation***
+***Pirate Variant Feature: Bad Reputation***
 If your character has a sailor background, you may select this background feature instead of Ship’s Passage.
 No matter where you go, people are afraid of you due to your reputation. When you are in a civilized settlement, you can get away with minor criminal offenses, such as refusing to pay for food at a tavern or breaking down doors at a local shop, since most people will not report your activity to the authorities.
