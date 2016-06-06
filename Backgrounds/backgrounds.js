@@ -25,7 +25,10 @@ var diretoryTreeToObj = function (dir, done) {
 
                 } else {
                     var filename = path.basename(file)
-                    results.push(filename.substr(0, filename.length - 9));
+                    var item = filename.substr(0, filename.length - 9);
+                    console.log(item);
+                    // what
+                    results.push(item);
                     if (!--pending)
                         done(null, results);
                 }
@@ -68,11 +71,13 @@ exports.background = {
                 bot.sendMessage(channel, message);
             }, delay);
         }
+        
+        var term = args.toLowerCase().replace(/\s+/g, '-');
 
-        var results = search(dataList, args);
+        var results = search(dataList, term);
         var others = [];
         if (results.length != 0) {
-            var perfect = results.indexOf(args.toLowerCase().replace(/\s+/g, '-'));
+            var perfect = results.indexOf();
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);
                 others = results;
