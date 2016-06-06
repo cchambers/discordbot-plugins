@@ -34,7 +34,6 @@ exports.define = {
                 xml.parseString(body, function (error, result) {
                     if (error === null) {
                         var entry = result.entry_list.entry;
-                        console.log("Worked...");
                         var defs = entry[0].def[0].dt;
                         bot.sendMessage(msg.channel, query + ": ");
                         for (var x = 0; x < defs.length; x++) {
@@ -44,6 +43,7 @@ exports.define = {
                                 sendMessages(defs[x], msg.channel, delay);
                             } else {
                                 console.log("Skipping: ", defs[x]);
+                                // if defs[x].sx: synonym
                             }
                         }
                         // cycle
