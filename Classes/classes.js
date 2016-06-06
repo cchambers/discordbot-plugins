@@ -104,7 +104,7 @@ exports.classes = {
             if(err)
                 console.error(err);
             dataList = res;
-            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " classes. Search for one with `!class <classname>`  ```" + dataList.join(", ") + "```"); "); 
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " classes. Search for one with `!class <classname>`  ```" + dataList.join(", ") + "```");
         });
 	}
 }
