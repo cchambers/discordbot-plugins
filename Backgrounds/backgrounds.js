@@ -53,14 +53,22 @@ function search(array, term) {
 
 exports.commands = [
     "background", // gives dnd 5e spell info on anything that matches
-    "backgrounds" // shows data count
+    "backgrounds", // shows data count,
+    "alignment"
 ];
+
+exports.alignment = {
+    usage: "",
+    description: "Helpful alignment data.",
+    process: function (bot, msg, args) {
+        bot.sendMessage(msg.channel, "http://i.imgur.com/d4tgWqK.png");
+    }
+}
 
 exports.background = {
     usage: "<search query> || !mob gob",
     description: "Returns mob data on whatever ",
     process: function (bot, msg, args) {
-
         function sendMessages(message, channel, delay) {
             setTimeout(function () {
                 bot.sendMessage(channel, message);

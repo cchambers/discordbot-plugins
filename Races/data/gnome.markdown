@@ -1,14 +1,29 @@
 __**GNOME**__
 *Small humanoid*
 
-** *Ability Score Increase.* ** INT +2
-** *Age.* ** Gnomes mature at the rate of humans, adulthood at 40. They live between 350 and 500 years.
-** *Alignment.* ** Gnomes are most often good, and tricksters.
-** *Size.* ** 3-4 feet tall and about 40 pounds.
-** *Speed.* ** 25 feet.
-** *Darkvision.* ** 60/120 dim/dark
-** *Gnome Cunning.* ** Advantage on INT, CHA, WIS, and CHA saving throws against magic.
-** *Languages.* ** Speak/read/write Common and Gnomish. 
+***Ability Score Increase.***
+INT +2
+
+***Age.***
+Gnomes mature at the rate of humans, adulthood at 40. They live between 350 and 500 years.
+
+***Alignment.***
+Gnomes are most often good, and tricksters.
+
+***Size.***
+3-4 feet tall and about 40 pounds.
+
+***Speed.***
+25 feet.
+
+***Darkvision.***
+60/120 dim/dark
+
+***Gnome Cunning.***
+Advantage on INT, CHA, WIS, and CHA saving throws against magic.
+
+***Languages.***
+Speak/read/write Common and Gnomish. 
 
 **Sub Races:**
 `Forest Gnome:`

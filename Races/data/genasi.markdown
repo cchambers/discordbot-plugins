@@ -1,12 +1,23 @@
 __**GENASI**__
 *Medium humanoid*
 
-** *Ability Score Increase.* ** Your Constitution increases by 2.
-** *Age.* ** Dwarves mature at the same rate as humans, but they are considered young until age 50. On average, they live 350 years.
-** *Alignment.* ** Most dwarves are lawful, believing firmly in the benefit of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.
-** *Size.* ** Dwarves stand between 4 and 5 feet tall and average about 150 lbs
-** *Speed.* ** 30 feet.
-** *Languages.* ** Speak, read, and write Common and Primordial. 
+***Ability Score Increase.***
+Your Constitution increases by 2.
+
+***Age.***
+Dwarves mature at the same rate as humans, but they are considered young until age 50. On average, they live 350 years.
+
+***Alignment.***
+Most dwarves are lawful, believing firmly in the benefit of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.
+
+***Size.***
+Dwarves stand between 4 and 5 feet tall and average about 150 lbs
+
+***Speed.***
+30 feet.
+
+***Languages.***
+Speak, read, and write Common and Primordial. 
 
 **Sub Races:**
 `Air:`
