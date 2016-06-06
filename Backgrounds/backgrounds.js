@@ -4,6 +4,8 @@ var AuthDetails = require("../../auth.json");
 var fs = require('fs');
 var path = require('path');
 
+var timeouts = [];
+
 var diretoryTreeToObj = function (dir, done) {
     var results = [];
 
@@ -87,9 +89,10 @@ exports.background = {
                     for (var x = 0; x < messages.length; x++) {
                         
                         console.log("Message "+x+" length: ", messages[x].length);
-                        
-                        setTimeout( function () {
-                                bot.sendMessage(msg.channel, messages[x]);
+                        timeout[x] = setTimeout( function () {
+                            var channel = msg.channel;
+                            var text = messages[x];
+                            bot.sendMessage(channel, text);
                         },  200 * x);
                     }
                 });
