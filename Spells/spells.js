@@ -68,10 +68,7 @@ exports.spell = {
         
         var others = [];
         if (results.length != 0 ) {
-            console.log("pre:", term);
             var perfect = results.indexOf( term.replace(/\s/g, "-") );
-            console.log("post:", term);
-             
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);
                 others = results;

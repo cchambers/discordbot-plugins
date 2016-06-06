@@ -60,6 +60,10 @@ exports.feat = {
 	description: "Returns mob data on whatever ",
 	process: function (bot, msg, args) {
         var term = args.toLowerCase().replace(/\s/g, "-");
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is !feat <query>"); 
+            return;
+        }
         var results = search(dataList, term);
         var others = [];
         if (results.length != 0 ) {
@@ -71,7 +75,7 @@ exports.feat = {
                 results = single;
             }
             if (results.length > 1) {
-                bot.sendMessage(msg.channel, "I found **" + results.length + "** feats matching that term: ```" + results.join (", ") + "```");
+                bot.sendMessage(msg.channel, "I found **" + results.length + "** feats matching that term: ```" + results.join(", ") + "```");
             } else {
                 var file = results[0].replace(/\s/g, "-") + ".markdown";
                 console.log("Trying to pull " + file); 
@@ -80,11 +84,11 @@ exports.feat = {
                     if (err) throw err;
                     var meat = data;
                     if (others.length > 0) {
-                        bot.sendMessage(msg.channel, "I found **" + others.length + "** other feats matching that term: ```" + others.join (", ") + "```");
+                        bot.sendMessage(msg.channel, "I found **" + others.length + "** other feats matching that term: ```" + others.join(", ") + "```");
                     }
                     setTimeout( function () {
                          bot.sendMessage(msg.channel, meat);
-                    },200);
+                    }, 200);
                 });
             }
         } else {
@@ -101,7 +105,7 @@ exports.feats = {
         diretoryTreeToObj(dirTree, function (err, res){
             if(err) console.error(err);
             dataList = res;
-            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " feats. Search for one with !race <query>"); 
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " feats. Search for one with !feat <query>... ```" + dataList.join(", ") + "```"); 
         });
 	}
 }
