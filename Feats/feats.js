@@ -61,7 +61,7 @@ exports.feat = {
 	process: function (bot, msg, args) {
         var term = args.toLowerCase().replace(/\s/g, "-");
         if (term == "") {
-            bot.sendMessage(msg.channel, "The correct syntax is `!feat <query>`"); 
+            bot.sendMessage(msg.channel, "The correct syntax is `!feat <query>` or `!feats` to get a list."); 
             return;
         }
         var results = search(dataList, term);

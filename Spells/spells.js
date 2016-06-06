@@ -59,12 +59,12 @@ exports.spell = {
 	usage: "<search query> || ex: !spell arms",
 	description: "Returns spell data.",
 	process: function(bot, msg, args) {
-        var term = args.toLowerCase();
+        var term = args.toLowerCase().replace(/\s+/g, '-');
         if (term == "") {
-            bot.sendMessage(msg.channel, "The correct syntax is !spell <query>"); 
+            bot.sendMessage(msg.channel, "The correct syntax is `!spell <query>` or try `!spells` to see how many spells we transcribed for you fuckers."); 
             return;
         }
-        var results = search(dataList, term.replace(/\s+/g, '-'));
+        var results = search(dataList, term);
         
         var others = [];
         if (results.length != 0 ) {

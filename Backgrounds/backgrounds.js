@@ -66,28 +66,32 @@ exports.alignment = {
 }
 
 exports.background = {
-    usage: "<search query> || !mob gob",
-    description: "Returns mob data on whatever ",
+    usage: "<search query>",
+    description: "Returns background data on whatever ",
     process: function (bot, msg, args) {
+        var term = args.toLowerCase().replace(/\s/g, "-");
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is `!background <query>` or try '!backgrounds` to get a list.");
+            return;
+        }
+        var results = search(dataList, term);
+        
         function sendMessages(message, channel, delay) {
             setTimeout(function () {
                 bot.sendMessage(channel, message);
             }, delay);
         }
-        
-        var term = args.toLowerCase();
-        var results = search(dataList, term.replace(/\s+/g, '-'));
-       
+
         var others = [];
         if (results.length != 0) {
-            var perfect = results.indexOf( term.replace(/\s/g, "-") );
-            
+            var perfect = results.indexOf(term.replace(/\s/g, "-"));
+
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);
                 others = results;
                 results = single;
             }
-            
+
             if (results.length > 1) {
                 bot.sendMessage(msg.channel, "I found **" + results.length + "** backgrounds matching that term: ```" + results.join(", ") + "```");
             } else {

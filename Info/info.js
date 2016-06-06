@@ -65,8 +65,13 @@ exports.info = {
             }, delay);
         }
         
-        var term = args.toLowerCase();
-        var results = search(dataList, term.replace(/\s+/g, '-'));
+        var term = args.toLowerCase().replace(/\s+/g, '-');
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is `!info <query>` or try '!information` to get a list.");
+            return;
+        }
+        
+        var results = search(dataList, term);
        
         var others = [];
         if (results.length != 0) {

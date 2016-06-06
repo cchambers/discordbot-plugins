@@ -57,10 +57,15 @@ exports.commands = [
 ];
 
 exports.class = {
-	usage: "<search query> || !class gob",
-	description: "Returns class data on whatever ",
+	usage: "<search query>",
+	description: "Returns class data.",
 	process: function (bot, msg, args) {
-        var results = search(dataList, args);
+        var term = args.toLowerCase().replace(/\s/g, "-");
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is `!class <query>` or try '!classes` to get a list."); 
+            return;
+        }
+        var results = search(dataList, term);
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
