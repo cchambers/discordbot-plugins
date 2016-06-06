@@ -63,8 +63,7 @@ exports.feat = {
         var results = search(dataList, term);
         var others = [];
         if (results.length != 0 ) {
-            var perfect = results.indexOf( args.toLowerCase() );
-            console.log(results, perfect);
+            var perfect = results.indexOf( args.toLowerCase().replace(/\s/g, "-") );
              
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);

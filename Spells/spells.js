@@ -64,7 +64,7 @@ exports.spell = {
         
         var others = [];
         if (results.length != 0 ) {
-            var perfect = results.indexOf( args.toLowerCase() );
+            var perfect = results.indexOf( term.replace(/\s/g, "-") );
              
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);
