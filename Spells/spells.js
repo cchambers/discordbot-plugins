@@ -32,18 +32,17 @@ var diretoryTreeToObj = function(dir, done) {
     });
 };
 
-var spellList;
+var dataList;
 var dirTree = ('/home/discordbot/plugins/Spells/data');
 
 diretoryTreeToObj(dirTree, function(err, res){
     if(err)
         console.error(err);
-    spellList = res;
+    dataList = res;
 });
 
 function search(array, term) {
     var results;
-    term = term.toLowerCase();
     results = array.filter(function(entry) {
         return entry.toLowerCase().indexOf(term) !== -1;
     });
@@ -61,7 +60,7 @@ exports.spell = {
 	description: "Returns spell data.",
 	process: function(bot, msg, args) {
         var term = args.toLowerCase();
-        var results = search(spellList, term.replace(/\s+/g, '-'));
+        var results = search(dataList, term.replace(/\s+/g, '-'));
         
         var others = [];
         if (results.length != 0 ) {
@@ -71,8 +70,8 @@ exports.spell = {
                 var single = results.splice(perfect, 1);
                 others = results;
                 results = single;
-                console.log(results, others);
             }
+            
             if (results.length > 1) {
                 bot.sendMessage(msg.channel, "I found **" + results.length + "** spells matching that term: ```" + results.join(", ") + "```");
             } else {
@@ -80,6 +79,7 @@ exports.spell = {
                 console.log("Trying to pull " + file); 
                 var filename = '/home/discordbot/plugins/Spells/data/' + file;
                 fs.readFile(filename, 'utf8', function (err, data) {
+                    
                     if (err) throw err;
                     var edits = data.split("---");
                     var title = results[0].toUpperCase();
@@ -106,11 +106,9 @@ exports.spells = {
 	description: "Reloads spells and shows count.",
 	process: function(bot, msg, args) {
         diretoryTreeToObj(dirTree, function(err, res){
-            if(err)
-                console.error(err);
-            spellList = res;
-            var allSpells = spellList.join(", ");
-            bot.sendMessage(msg.channel, "I have data on " + spellList.length + " spells. Search for one with !spell <spellname>"); 
+            if (err) console.error(err);
+            dataList = res;
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " spells. Search for one with !spell <spellname>"); 
         });
 	}
 }

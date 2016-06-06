@@ -4,8 +4,6 @@ var AuthDetails = require("../../auth.json");
 var fs = require('fs');
 var path = require('path');
 
-var timeouts = [];
-
 var diretoryTreeToObj = function (dir, done) {
     var results = [];
 
@@ -70,16 +68,18 @@ exports.background = {
         }
         
         var term = args.toLowerCase();
-
         var results = search(dataList, term.replace(/\s+/g, '-'));
+       
         var others = [];
         if (results.length != 0) {
             var perfect = results.indexOf();
+            
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);
                 others = results;
                 results = single;
             }
+            
             if (results.length > 1) {
                 bot.sendMessage(msg.channel, "I found **" + results.length + "** backgrounds matching that term: ```" + results.join(", ") + "```");
             } else {
@@ -113,8 +113,7 @@ exports.backgrounds = {
     description: "Reloads backgrounds and shows count.",
     process: function (bot, msg, args) {
         diretoryTreeToObj(dirTree, function (err, res) {
-            if (err)
-                console.error(err);
+            if (err) console.error(err);
             dataList = res;
             bot.sendMessage(msg.channel, "I have data on " + dataList.length + " backgrounds. Search for one with !race <query>");
         });
