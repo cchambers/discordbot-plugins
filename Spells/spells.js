@@ -60,6 +60,10 @@ exports.spell = {
 	description: "Returns spell data.",
 	process: function(bot, msg, args) {
         var term = args.toLowerCase();
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is !spell <query>"); 
+            return;
+        }
         var results = search(dataList, term.replace(/\s+/g, '-'));
         
         var others = [];
