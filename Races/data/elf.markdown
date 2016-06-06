@@ -1,16 +1,35 @@
 __**ELF**__
 *Medium humanoid*
 
-** *Ability Score Increase.* ** Your Dexterity increases by 2.
-** *Age.* ** An elf typically claims adulthood and an adult name around hte age of 100 and can live to be 750 years old.
-** *Alignment.* ** Elves lean strongly toward the gentler aspects of chaos. Drow are the exception, being more often evil than not.
-** *Size.* ** Elves range from under 5 feet to over 6 feet tall and have slender builds.
-** *Speed.* ** 30 feet.
-** *Darkvision.* ** 60/120 dim/dark
-** *Keen Senses.* ** You have proficiency in the Perception skill.
-** *Fey Ancestry.* ** Advantage on saving throws against being charmed, and magic cannot but you to sleep.
-** *Trance.* ** Elves don't need to sleep. They meditate (long rest) for 4 hours a day.
-** *Languages.* ** Speak/read/write Common and Elvish. 
+***Ability Score Increase.***
+Your Dexterity increases by 2.
+
+***Age.***
+An elf typically claims adulthood and an adult name around hte age of 100 and can live to be 750 years old.
+
+***Alignment.***
+Elves lean strongly toward the gentler aspects of chaos. Drow are the exception, being more often evil than not.
+
+***Size.***
+Elves range from under 5 feet to over 6 feet tall and have slender builds.
+
+***Speed.***
+30 feet.
+
+***Darkvision.***
+60/120 dim/dark
+
+***Keen Senses.***
+You have proficiency in the Perception skill.
+
+***Fey Ancestry.***
+Advantage on saving throws against being charmed, and magic cannot but you to sleep.
+
+***Trance.***
+Elves don't need to sleep. They meditate (long rest) for 4 hours a day.
+
+***Languages.***
+Speak/read/write Common and Elvish. 
 
 **Sub Races:**
 `High Elf:`

@@ -32,13 +32,13 @@ var diretoryTreeToObj = function (dir, done) {
     });
 };
 
-var mobList;
+var dataList;
 var dirTree = ('/home/discordbot/plugins/Monsters/data');
 
 diretoryTreeToObj(dirTree, function (err, res){
     if(err)
         console.error(err);
-    mobList = res;
+    dataList = res;
 });
 
 function search(array, term) {
@@ -60,7 +60,12 @@ exports.mob = {
 	usage: "<search query> || !mob gob",
 	description: "Returns mob data on whatever ",
 	process: function (bot, msg, args) {
-        var results = search(mobList, args);
+        var term = args.toLowerCase().replace(/\s/g, "-");
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is `!mob <query>`"); 
+            return;
+        }
+        var results = search(dataList, term);
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
@@ -103,8 +108,8 @@ exports.mobs = {
         diretoryTreeToObj(dirTree, function (err, res){
             if(err)
                 console.error(err);
-            mobList = res;
-            bot.sendMessage(msg.channel, "I have data on " + mobList.length + " mobs. Search for one with !mob <mobname>"); 
+            dataList = res;
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " mobs. Search for one with `!mob <mobname>`"); 
         });
 	}
 }

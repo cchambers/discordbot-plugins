@@ -1,8 +1,8 @@
 var urban = require('urban'),
     request = require('request'),
-    xml     = require('xml2js');
+    xml = require('xml2js');
 var getUrl = function (word) {
-    return 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/'+word+'?key=4b52f34f-e8da-43ca-a6a3-7b422d74ebc9';
+    return 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/' + word + '?key=4b52f34f-e8da-43ca-a6a3-7b422d74ebc9';
 }
 
 exports.random = {
@@ -20,16 +20,32 @@ exports.define = {
     usage: " || !define <query>",
     description: "Define a word.",
     process: function (bot, msg, suffix) {
+
+        function sendMessages(message, channel, delay) {
+            setTimeout(function () {
+                bot.sendMessage(channel, message);
+            }, delay);
+        }
+
         var query = suffix.toLowerCase();
         console.log(getUrl(query));
         request(getUrl(query), function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                xml.parseString(body, function(error, result){
+                xml.parseString(body, function (error, result) {
                     if (error === null) {
                         var entry = result.entry_list.entry;
-                        console.log("Worked...");
-                        console.log(entry[0].def[0]);
-                        bot.sendMessage(msg.channel, query + ": " + entry[0].def[0][0]);
+                        var defs = entry[0].def[0].dt;
+                        bot.sendMessage(msg.channel, query + ": ");
+                        for (var x = 0; x < defs.length; x++) {
+                            var delay = 200 * x;
+                            var def = defs[x];
+                            if (typeof (def) == 'string') {
+                                sendMessages(defs[x], msg.channel, delay);
+                            } else {
+                                console.log("Skipping: ", defs[x]);
+                                // if defs[x].sx: synonym
+                            }
+                        }
                         // cycle
                     } else if (response.statusCode != 200) {
                         console.log(response.statusCode);
@@ -39,7 +55,7 @@ exports.define = {
                     }
                 });
             } else {
-                 console.log('API connection error.');
+                console.log('API connection error.');
             }
         });
     }

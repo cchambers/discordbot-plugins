@@ -32,13 +32,13 @@ var diretoryTreeToObj = function (dir, done) {
     });
 };
 
-var classList;
+var dataList;
 var dirTree = ('/home/discordbot/plugins/Classes/data');
 
 diretoryTreeToObj(dirTree, function (err, res){
     if(err)
         console.error(err);
-    classList = res;
+    dataList = res;
 });
 
 function search(array, term) {
@@ -57,10 +57,15 @@ exports.commands = [
 ];
 
 exports.class = {
-	usage: "<search query> || !class gob",
-	description: "Returns class data on whatever ",
+	usage: "<search query>",
+	description: "Returns class data.",
 	process: function (bot, msg, args) {
-        var results = search(classList, args);
+        var term = args.toLowerCase().replace(/\s/g, "-");
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is `!class <query>` or try '!classes` to get a list."); 
+            return;
+        }
+        var results = search(dataList, term);
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
@@ -103,8 +108,8 @@ exports.classes = {
         diretoryTreeToObj(dirTree, function (err, res){
             if(err)
                 console.error(err);
-            classList = res;
-            bot.sendMessage(msg.channel, "I have data on " + classList.length + " classes. Search for one with !class <classname>"); 
+            dataList = res;
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " classes. Search for one with `!class <classname>`  ```" + dataList.join(", ") + "```");
         });
 	}
 }

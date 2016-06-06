@@ -23,7 +23,7 @@ var diretoryTreeToObj = function(dir, done) {
                    
                 } else {
                     var filename = path.basename(file)
-                    results.push(filename.substr(0, filename.length-9).replace(/-/g, " "));
+                    results.push(filename.substr(0, filename.length-9));
                     if (!--pending)
                         done(null, results);
                 }
@@ -32,18 +32,17 @@ var diretoryTreeToObj = function(dir, done) {
     });
 };
 
-var spellList;
+var dataList;
 var dirTree = ('/home/discordbot/plugins/Spells/data');
 
 diretoryTreeToObj(dirTree, function(err, res){
     if(err)
         console.error(err);
-    spellList = res;
+    dataList = res;
 });
 
 function search(array, term) {
     var results;
-    term = term.toLowerCase();
     results = array.filter(function(entry) {
         return entry.toLowerCase().indexOf(term) !== -1;
     });
@@ -60,17 +59,22 @@ exports.spell = {
 	usage: "<search query> || ex: !spell arms",
 	description: "Returns spell data.",
 	process: function(bot, msg, args) {
-        var results = search(spellList, args);
+        var term = args.toLowerCase().replace(/\s+/g, '-');
+        if (term == "") {
+            bot.sendMessage(msg.channel, "The correct syntax is `!spell <query>` or try `!spells` to see how many spells we transcribed for you fuckers."); 
+            return;
+        }
+        var results = search(dataList, term);
+        
         var others = [];
         if (results.length != 0 ) {
-            var perfect = results.indexOf( args.toLowerCase() );
-             
+            var perfect = results.indexOf( term.replace(/\s/g, "-") );
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);
                 others = results;
                 results = single;
-                console.log(results, others);
             }
+            
             if (results.length > 1) {
                 bot.sendMessage(msg.channel, "I found **" + results.length + "** spells matching that term: ```" + results.join(", ") + "```");
             } else {
@@ -78,6 +82,7 @@ exports.spell = {
                 console.log("Trying to pull " + file); 
                 var filename = '/home/discordbot/plugins/Spells/data/' + file;
                 fs.readFile(filename, 'utf8', function (err, data) {
+                    
                     if (err) throw err;
                     var edits = data.split("---");
                     var title = results[0].toUpperCase();
@@ -104,11 +109,9 @@ exports.spells = {
 	description: "Reloads spells and shows count.",
 	process: function(bot, msg, args) {
         diretoryTreeToObj(dirTree, function(err, res){
-            if(err)
-                console.error(err);
-            spellList = res;
-            var allSpells = spellList.join(", ");
-            bot.sendMessage(msg.channel, "I have data on " + spellList.length + " spells. Search for one with !spell <spellname>"); 
+            if (err) console.error(err);
+            dataList = res;
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " spells. Search for one with `!spell <spellname>`"); 
         });
 	}
 }
