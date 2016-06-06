@@ -87,15 +87,15 @@ exports.background = {
                     }
                     var messages = meat.split("===");
                     for (var x = 0; x < messages.length; x++) {
-                        
-                        console.log("Message "+x+" length: ", messages[x].length);
-                        timeouts[x] = setTimeout( function () {
-                            console.log("Trying:", text);
-                            var channel = msg.channel;
-                            var text = messages[x];
-                            console.log("Trying:", text);
-                            bot.sendMessage(channel, text);
-                        },  200 * x);
+                        console.log(x, messages[x]);
+                        // console.log("Message "+x+" length: ", messages[x].length);
+                        // timeouts[x] = setTimeout( function () {
+                        //     console.log("Trying:", text);
+                        //     var channel = msg.channel;
+                        //     var text = messages[x];
+                        //     console.log("Trying:", text);
+                        //     bot.sendMessage(channel, text);
+                        // },  200 * x);
                     }
                 });
             }
