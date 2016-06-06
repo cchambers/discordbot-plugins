@@ -1,3 +1,7 @@
+__**MOUNTS**__
+A knight charging into battle on a warhorse, a wizard casting spells from the back of a griffon, or a cleric soaring through the sky on a pegasus all enjoy the benefits of speed and mobility that a mount can provide.
+
+A willing creature that is at least one size larger than you and that has an appropriate anatomy can serve as a mount, using the following rules.
 
 **Mounting and Dismounting**
 Once during your move, you can mount a creature that is within 5 feet of you or dismount. Doing so costs an amount of movement equal to half your speed. For example, if your speed is 30 feet, you must spend 15 feet of movement to mount a horse. Therefore, you can’t mount it if you don’t have 15 feet of movement left or if your speed is 0.
