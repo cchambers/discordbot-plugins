@@ -35,13 +35,13 @@ var diretoryTreeToObj = function (dir, done) {
     });
 };
 
-var backgroundList;
+var dataList;
 var dirTree = ('/home/discordbot/plugins/Backgrounds/data');
 
 diretoryTreeToObj(dirTree, function (err, res) {
     if (err)
         console.error(err);
-    backgroundList = res;
+    dataList = res;
 });
 
 function search(array, term) {
@@ -52,11 +52,6 @@ function search(array, term) {
     return results;
 }
 
-function sendMessages(message, channel, delay) {
-    setTimeout(function () {
-        bot.sendMessage(channel, message);
-    }, delay);
-}
 
 exports.commands = [
     "background", // gives dnd 5e spell info on anything that matches
@@ -68,8 +63,15 @@ exports.background = {
     description: "Returns mob data on whatever ",
     process: function (bot, msg, args) {
 
+        function sendMessages(message, channel, delay) {
+            setTimeout(function () {
+                bot.sendMessage(channel, message);
+            }, delay);
+        }
+        
         var term = args.toLowerCase();
-        var results = search(backgroundList, term.replace(/\s+/g, '-'));
+
+        var results = search(dataList, term.replace(/\s+/g, '-'));
         var others = [];
         if (results.length != 0) {
             var perfect = results.indexOf();
@@ -113,8 +115,8 @@ exports.backgrounds = {
         diretoryTreeToObj(dirTree, function (err, res) {
             if (err)
                 console.error(err);
-            backgroundList = res;
-            bot.sendMessage(msg.channel, "I have data on " + backgroundList.length + " backgrounds. Search for one with !race <query>");
+            dataList = res;
+            bot.sendMessage(msg.channel, "I have data on " + dataList.length + " backgrounds. Search for one with !race <query>");
         });
     }
 }
