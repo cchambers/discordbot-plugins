@@ -35,10 +35,9 @@ exports.define = {
                     if (error === null) {
                         var entry = result.entry_list.entry;
                         console.log("Worked...");
-                        console.log(entry[0].def[0].dt);
                         var defs = entry[0].def[0].dt;
                         bot.sendMessage(msg.channel, query + ": ");
-                        for (var x = 0; x < defs; x++) {
+                        for (var x = 0; x < defs.length; x++) {
                             var delay = 200 * x;
                             var def = defs[x];
                             console.log("def #"+x+": ", def, typeof(def));
