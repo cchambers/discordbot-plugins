@@ -1,7 +1,7 @@
 __**LUCKY**__
-You have inexplicable luck that seem s to kick in at just the right moment.
+You have inexplicable luck that seems to kick in at just the right moment.
 
-You have 3 luck points. Whenever you make an attack roll, an ability check, or a saving throw, you can spend one luck point to roll an additional d20. You can choose to spend one of your luck points after you roll the die, but before the outcom e is determined. You choose which of the d20s is used for the attack roll, ability check, or saving throw.
+You have 3 luck points. Whenever you make an attack roll, an ability check, or a saving throw, you can spend one luck point to roll an additional d20. You can choose to spend one of your luck points after you roll the die, but before the outcome is determined. You choose which of the d20s is used for the attack roll, ability check, or saving throw.
 
 You can also spend one luck point when an attack roll is made against you. Roll a d20, and then choose whether the attack uses the attacker’s roll or yours.
 

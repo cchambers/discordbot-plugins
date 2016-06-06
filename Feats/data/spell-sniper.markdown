@@ -1,7 +1,7 @@
 __**SPELL SNIPER**__
 *Prerequisite: The ability to cast at least one spell*
 
-You have learned techniques to enhance your attacks with certain kinds o f spells, gaining the following benefits:
+You have learned techniques to enhance your attacks with certain kinds of spells, gaining the following benefits:
 
 • When you cast a spell that requires you to make an attack roll, the spell’s range is doubled.
 • Your ranged spell attacks ignore half cover and three-quarters cover.
