@@ -64,6 +64,7 @@ exports.feat = {
         var others = [];
         if (results.length != 0 ) {
             var perfect = results.indexOf( args.toLowerCase() );
+            console.log(results, perfect);
              
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);

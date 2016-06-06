@@ -11,7 +11,7 @@ tags: [bard, cleric, druid, ranger, level4]
 
 **Range**: Touch
 
-**Components**: V, S, M (a leather strap, bound around the arm or a similar appendage)
+**Components**: V, S, M (a leather strap, bound around the armor a similar appendage)
 
 **Duration**: 1 hour
 
