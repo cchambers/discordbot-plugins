@@ -4,7 +4,7 @@ var AuthDetails = require("../../auth.json");
 var fs = require('fs');
 var path = require('path');
 
-var directory = ___dirname;
+var directory = __dirname;
 
 var lexicon = {
     backgrounds: [],
