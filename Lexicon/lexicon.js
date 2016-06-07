@@ -48,6 +48,15 @@ var diretoryTreeToObj = function (dir, done) {
     });
 };
 
+for (var type in lexicon) {
+    var where = dataFolder + "/" + type;
+    diretoryTreeToObj(where, function (err, res){
+        if(err)
+            console.error(err);
+        lexicon[type] = res;
+        console.log(type, lexicon.type.length);
+    });
+}
 
 function search(term) {
     var results = [];
@@ -60,18 +69,6 @@ function search(term) {
     }
     return results;
 }
-
-for (var type in lexicon) {
-    var where = dataFolder + "/" + type;
-    diretoryTreeToObj(where, function (err, res){
-        if(err)
-            console.error(err);
-        lexicon[type] = res;
-    });
-}
-
-console.log("Lex:", lexicon);
-
 
 exports.commands = [
 	"find", 
