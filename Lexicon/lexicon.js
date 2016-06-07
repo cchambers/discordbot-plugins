@@ -6,7 +6,7 @@ var path = require('path');
 
 var directory = __dirname;
 
-var lexicon = { 
+var lexicon = {
     backgrounds: [],
     classes: [],
     conditions: [],
@@ -30,16 +30,16 @@ var diretoryTreeToObj = function (dir, done) {
         var pending = list.length;
 
         if (!pending)
-            return done(null, {name: path.basename(dir), type: 'folder', children: results});
+            return done(null, { name: path.basename(dir), type: 'folder', children: results });
 
-        list.forEach( function (file) {
+        list.forEach(function (file) {
             file = path.resolve(dir, file);
             fs.stat(file, function (err, stat) {
                 if (stat && stat.isDirectory()) {
-                   
+
                 } else {
                     var filename = path.basename(file)
-                    results.push(filename.substr(0, filename.length-9));
+                    results.push(filename.substr(0, filename.length - 9));
                     if (!--pending)
                         done(null, results);
                 }
@@ -48,20 +48,19 @@ var diretoryTreeToObj = function (dir, done) {
     });
 };
 
-for (var type in lexicon) {
-    var where = dataFolder + "/" + type;
-    diretoryTreeToObj(where, function (err, res){
-        if(err)
+function getTreeData(which, where) {
+    diretoryTreeToObj(where, function (err, res) {
+        if (err)
             console.error(err);
-        lexicon[type] = res;
-        console.log(type, lexicon[type].length);
+        lexicon[which] = res;
+        console.log(which, lexicon[which].length);
     });
 }
 
 function search(term) {
     var results = [];
-        for (var array in lexicon) {
-        var matches = array.filter( function (entry) {
+    for (var array in lexicon) {
+        var matches = array.filter(function (entry) {
             return entry.toLowerCase().indexOf(term) !== -1;
         });
         console.log("><><>< matches:", matches);
@@ -70,62 +69,67 @@ function search(term) {
     return results;
 }
 
+for (var type in lexicon) {
+    var where = dataFolder + "/" + type;
+    getTreeData(type, where);
+}
+
 exports.commands = [
-	"find", 
+    "find",
     "finds"
 ];
 
 exports.race = {
-	usage: "<search query>",
-	description: "Returns data on whatever it finds.",
-	process: function (bot, msg, args) {
+    usage: "<search query>",
+    description: "Returns data on whatever it finds.",
+    process: function (bot, msg, args) {
         var term = args.toLowerCase().replace(/\s/g, "-");
         if (term == "") {
-            bot.sendMessage(msg.channel, "The correct syntax is `!find <query>`"); 
+            bot.sendMessage(msg.channel, "The correct syntax is `!find <query>`");
             return;
         }
-        
+
         var results = search(dataList, term);
         console.log("FOUND:", results);
         var others = [];
-        
-        if (results.length != 0 ) {
-            var perfect = results.indexOf( args.toLowerCase().replace(/\s/g, "-") );
+
+        if (results.length != 0) {
+            var perfect = results.indexOf(args.toLowerCase().replace(/\s/g, "-"));
             if (perfect >= 0) {
                 var single = results.splice(perfect, 1);
                 others = results;
                 results = single;
             }
-            
+
             if (results.length > 1) {
-                bot.sendMessage(msg.channel, "I found **" + results.length + "** results matching that term: ```" + results.join (", ") + "```");
+                bot.sendMessage(msg.channel, "I found **" + results.length + "** results matching that term: ```" + results.join(", ") + "```");
             } else {
                 var file = results[0].replace(/\s/g, "-") + ".markdown";
                 var filename = '/home/discordbot/plugins/Races/data/' + file;
-                console.log("Trying to pull " + filename); 
+                console.log("Trying to pull " + filename);
                 fs.readFile(filename, 'utf8', function (err, data) {
                     if (err) throw err;
                     var meat = data;
                     if (others.length > 0) {
-                        bot.sendMessage(msg.channel, "I found **" + others.length + "** other results matching that term: ```" + others.join (", ") + "```");
+                        bot.sendMessage(msg.channel, "I found **" + others.length + "** other results matching that term: ```" + others.join(", ") + "```");
                     }
-                    setTimeout( function () {
-                         bot.sendMessage(msg.channel, meat);
-                    },200);
+                    setTimeout(function () {
+                        bot.sendMessage(msg.channel, meat);
+                    }, 200);
                 });
             }
         } else {
-            bot.sendMessage(msg.channel, "I have nothing on that..."); 
+            bot.sendMessage(msg.channel, "I have nothing on that...");
         }
-	}
+    }
 }
 
 
 exports.finds = {
-	usage: "",
-	description: "Short explaination of the Lexicon.",
-	process: function (bot, msg, args) {
-       // finds what?
-       return;
-	}
+    usage: "",
+    description: "Short explaination of the Lexicon.",
+    process: function (bot, msg, args) {
+        // finds what?
+        return;
+    }
 }
