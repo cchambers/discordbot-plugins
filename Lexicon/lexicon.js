@@ -49,12 +49,15 @@ var diretoryTreeToObj = function (dir, done) {
 };
 
 
-function search(array, term) {
-    var results;
-    term = term.toLowerCase();
-    results = array.filter( function (entry) {
-        return entry.toLowerCase().indexOf(term) !== -1;
-    });
+function search(term) {
+    var results = [];
+        for (var array in lexicon) {
+        var matches = array.filter( function (entry) {
+            return entry.toLowerCase().indexOf(term) !== -1;
+        });
+        console.log("><><>< matches:", matches);
+        results.push[matches];
+    }
     return results;
 }
 
@@ -67,9 +70,6 @@ for (var type in lexicon) {
         console.log("HERE:", res);
     });
 }
-
-
-
 
 
 exports.commands = [
@@ -88,6 +88,7 @@ exports.race = {
         }
         
         var results = search(dataList, term);
+        console.log("FOUND:", results);
         var others = [];
         
         if (results.length != 0 ) {
@@ -102,8 +103,8 @@ exports.race = {
                 bot.sendMessage(msg.channel, "I found **" + results.length + "** results matching that term: ```" + results.join (", ") + "```");
             } else {
                 var file = results[0].replace(/\s/g, "-") + ".markdown";
-                console.log("Trying to pull " + file); 
                 var filename = '/home/discordbot/plugins/Races/data/' + file;
+                console.log("Trying to pull " + filename); 
                 fs.readFile(filename, 'utf8', function (err, data) {
                     if (err) throw err;
                     var meat = data;
