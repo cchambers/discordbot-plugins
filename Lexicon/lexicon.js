@@ -4,6 +4,8 @@ var AuthDetails = require("../../auth.json");
 var fs = require('fs');
 var path = require('path');
 
+var directory = ___dirname;
+
 var lexicon = {
     backgrounds: [],
     classes: [],
@@ -45,12 +47,15 @@ var diretoryTreeToObj = function (dir, done) {
 };
 
 var dataList;
-var dirTree = ('/home/discordbot/plugins/Races/data');
-console.log("LEXICON:", __dirname);
+var dirTree = (directory + '/data');
+
+var allData = (directory + '/data');
+
 diretoryTreeToObj(dirTree, function (err, res){
     if(err)
         console.error(err);
     dataList = res;
+    console.log(dataList);
 });
 
 function search(array, term) {
