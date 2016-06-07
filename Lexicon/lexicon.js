@@ -104,19 +104,21 @@ exports.race = {
             if (results.length > 1) {
                 bot.sendMessage(msg.channel, "I found **" + results.length + "** results matching that term: ```" + results.join(", ") + "```");
             } else {
-                var file = results[0].replace(/\s/g, "-") + ".markdown";
-                var filename = '/home/discordbot/plugins/Races/data/' + file;
-                console.log("Trying to pull " + filename);
-                fs.readFile(filename, 'utf8', function (err, data) {
-                    if (err) throw err;
-                    var meat = data;
-                    if (others.length > 0) {
-                        bot.sendMessage(msg.channel, "I found **" + others.length + "** other results matching that term: ```" + others.join(", ") + "```");
-                    }
-                    setTimeout(function () {
-                        bot.sendMessage(msg.channel, meat);
-                    }, 200);
-                });
+                bot.sendMessage(msg.channel, "I totally found that thing you were looking for:" + results);
+                // pull file data
+                // var file = results[0].replace(/\s/g, "-") + ".markdown";
+                // var filename = '/home/discordbot/plugins/Races/data/' + file;
+                // console.log("Trying to pull " + filename);
+                // fs.readFile(filename, 'utf8', function (err, data) {
+                //     if (err) throw err;
+                //     var meat = data;
+                //     if (others.length > 0) {
+                //         bot.sendMessage(msg.channel, "I found **" + others.length + "** other results matching that term: ```" + others.join(", ") + "```");
+                //     }
+                //     setTimeout(function () {
+                //         bot.sendMessage(msg.channel, meat);
+                //     }, 200);
+                // });
             }
         } else {
             bot.sendMessage(msg.channel, "I have nothing on that...");
