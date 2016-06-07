@@ -70,7 +70,7 @@ for (var type in lexicon) {
     });
 }
 
-console.log("Len:", lexicon.length);
+console.log("Lex:", lexicon);
 
 
 exports.commands = [
