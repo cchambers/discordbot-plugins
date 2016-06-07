@@ -54,7 +54,7 @@ for (var type in lexicon) {
         if(err)
             console.error(err);
         lexicon[type] = res;
-        console.log(type, lexicon.type.length);
+        console.log(type, lexicon[type].length);
     });
 }
 
