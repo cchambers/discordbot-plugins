@@ -66,6 +66,7 @@ function search(term) {
         console.log("><><>< matches:", matches);
         results.push[matches];
     }
+    console.log("FOUND:", results);
     return results;
 }
 
@@ -90,39 +91,38 @@ exports.race = {
         }
 
         var results = search(dataList, term);
-        console.log("FOUND:", results);
         var others = [];
+    
+        // if (results.length != 0) {
+        //     var perfect = results.indexOf(args.toLowerCase().replace(/\s/g, "-"));
+        //     if (perfect >= 0) {
+        //         var single = results.splice(perfect, 1);
+        //         others = results;
+        //         results = single;
+        //     }
 
-        if (results.length != 0) {
-            var perfect = results.indexOf(args.toLowerCase().replace(/\s/g, "-"));
-            if (perfect >= 0) {
-                var single = results.splice(perfect, 1);
-                others = results;
-                results = single;
-            }
-
-            if (results.length > 1) {
-                bot.sendMessage(msg.channel, "I found **" + results.length + "** results matching that term: ```" + results.join(", ") + "```");
-            } else {
-                bot.sendMessage(msg.channel, "I totally found that thing you were looking for:" + results);
-                // pull file data
-                // var file = results[0].replace(/\s/g, "-") + ".markdown";
-                // var filename = '/home/discordbot/plugins/Races/data/' + file;
-                // console.log("Trying to pull " + filename);
-                // fs.readFile(filename, 'utf8', function (err, data) {
-                //     if (err) throw err;
-                //     var meat = data;
-                //     if (others.length > 0) {
-                //         bot.sendMessage(msg.channel, "I found **" + others.length + "** other results matching that term: ```" + others.join(", ") + "```");
-                //     }
-                //     setTimeout(function () {
-                //         bot.sendMessage(msg.channel, meat);
-                //     }, 200);
-                // });
-            }
-        } else {
-            bot.sendMessage(msg.channel, "I have nothing on that...");
-        }
+        //     if (results.length > 1) {
+        //         bot.sendMessage(msg.channel, "I found **" + results.length + "** results matching that term: ```" + results.join(", ") + "```");
+        //     } else {
+        //         bot.sendMessage(msg.channel, "I totally found that thing you were looking for:" + results);
+        //         // pull file data
+        //         // var file = results[0].replace(/\s/g, "-") + ".markdown";
+        //         // var filename = '/home/discordbot/plugins/Races/data/' + file;
+        //         // console.log("Trying to pull " + filename);
+        //         // fs.readFile(filename, 'utf8', function (err, data) {
+        //         //     if (err) throw err;
+        //         //     var meat = data;
+        //         //     if (others.length > 0) {
+        //         //         bot.sendMessage(msg.channel, "I found **" + others.length + "** other results matching that term: ```" + others.join(", ") + "```");
+        //         //     }
+        //         //     setTimeout(function () {
+        //         //         bot.sendMessage(msg.channel, meat);
+        //         //     }, 200);
+        //         // });
+        //     }
+        // } else {
+        //     bot.sendMessage(msg.channel, "I have nothing on that...");
+        // }
     }
 }
 
