@@ -6,7 +6,7 @@ var path = require('path');
 
 var directory = __dirname;
 
-var lexicon = {
+var lexicon = { 
     backgrounds: [],
     classes: [],
     conditions: [],
@@ -18,9 +18,11 @@ var lexicon = {
     spells: []
 }
 
+var dataList;
+var dataFolder = directory + '/data';
+
 var diretoryTreeToObj = function (dir, done) {
     var results = [];
-
     fs.readdir(dir, function (err, list) {
         if (err)
             return done(err);
@@ -46,17 +48,6 @@ var diretoryTreeToObj = function (dir, done) {
     });
 };
 
-var dataList;
-var dirTree = (directory + '/data');
-
-var allData = (directory + '/data');
-
-diretoryTreeToObj(dirTree, function (err, res){
-    if(err)
-        console.error(err);
-    dataList = res;
-    console.log(dataList);
-});
 
 function search(array, term) {
     var results;
@@ -66,6 +57,19 @@ function search(array, term) {
     });
     return results;
 }
+
+for (var type in lexicon) {
+    var where = dataFolder + "/" + type;
+    diretoryTreeToObj(where, function (err, res){
+        if(err)
+            console.error(err);
+        lexicon[type] = res;
+        console.log("HERE:", res);
+    });
+}
+
+
+
 
 
 exports.commands = [
