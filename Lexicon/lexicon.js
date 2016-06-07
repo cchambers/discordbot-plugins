@@ -67,9 +67,10 @@ for (var type in lexicon) {
         if(err)
             console.error(err);
         lexicon[type] = res;
-        console.log("HERE:", res);
     });
 }
+
+console.log("Len:", lexicon.length);
 
 
 exports.commands = [
