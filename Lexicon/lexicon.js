@@ -71,14 +71,11 @@ var shelf = {
                 console.log("matches:" + matches);
                 var which = array.toUpperCase();
                 var text = ("***" + which + "***: ```" + matches.join(", ") + "```");
-                console.log(text);
-                results.push[text];
+                results.push(text);
             }
         }
+        results = results.join("");
         console.log("Results: ", results);
-        results = results.join("");
-        console.log("Results joined: ", results);
-        results = results.join("");
         if (typeof (callback) == "function") {
             callback(results);
         } else {
