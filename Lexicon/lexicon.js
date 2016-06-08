@@ -26,6 +26,19 @@ var shelf = {
         });
     },
 
+    transformMap: {
+        spells: function (title, data) {
+            var edits = data.split("---");
+            title = title.toUpperCase();
+            // var tags = edits[1].match(/(?:tags:\s+")(.+)(?:")/g);
+            var tags = edits[1].split("tags:")[1];
+            var meat = edits[2];
+            var cleaned = "__**" + title + "**__ ```" + tags + "``` " + meat;
+            return cleaned;
+        }
+
+    },
+
     getCategories: function (dir, done) {
         var results = [];
         fs.readdir(dir, function (err, list) {
@@ -104,11 +117,14 @@ var shelf = {
             }
         }
 
-
         for (var x = 0; x < total.length; x++) {
             if (total[x] == term) {
                 perfect = term;
             }
+        }
+
+        if (total.length == 0) {
+            return false;
         }
 
         results = results.join("");
@@ -119,11 +135,19 @@ var shelf = {
             if (perfect) {
                 var t = total.indexOf(perfect);
                 activeDirectory = wheres[t];
+            } else if (total.length > 1) {
+                var pos = total.indexOf(thing);
+                var others = total.slice(thing, thing);
+                // "I found other items matching that query: ```" + others.join(", ") + "```");
             }
             var file = __dirname + "/data/" + activeDirectory + "/" + thing + ".markdown";
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) throw err;
                 results = data;
+                if (activeDirectory == "spells") {
+                    var title = thing.replace(/-/g, " ");
+                    results = shelf.transformMap.spells(title, results);
+                }
                 callback(results);
             });
         } else {
@@ -154,8 +178,7 @@ var shelf = {
 shelf.init();
 
 exports.commands = [
-    "find",
-    "finds"
+    "find"
 ];
 
 exports.find = {
@@ -164,22 +187,21 @@ exports.find = {
     process: function (bot, msg, args) {
         var term = args.toLowerCase().replace(/\s/g, "-");
         if (term == "") {
-            bot.sendMessage(msg.channel, "The correct syntax is `!find <query>`");
+            var array = [];
+            for (var item in shelf.lexicon) {
+                array.push(item);
+            }
+            bot.sendMessage(msg.channel, "The correct syntax is `!find <query>` -- I have information for these categories: ```" + array.join(", ") + "```");
             return;
         }
 
         var results = shelf.search(term, function (data) {
-            shelf.deliver(bot, msg.channel, data);
+            if (data == false) {
+                bot.sendMessage(msg.channel, "I have no data on that term.");
+            } else {
+                shelf.deliver(bot, msg.channel, data);
+            }
         });
 
-    }
-}
-
-exports.finds = {
-    usage: "",
-    description: "Short explaination of the Lexicon.",
-    process: function (bot, msg, args) {
-            bot.sendMessage(msg.channel, "Get you some of this: ```" + shelf.lexicon.join(", ") + "```");
-        return;
     }
 }
