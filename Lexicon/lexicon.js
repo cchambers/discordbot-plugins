@@ -70,11 +70,14 @@ var shelf = {
             if (matches.length > 0) {
                 console.log("matches:" + matches);
                 var which = array.toUpperCase();
-                var text = ("**" + which + "**: ```" + matches.join(", ") + "```");
+                var text = ("***" + which + "***: ```" + matches.join(", ") + "```");
                 console.log(text);
                 results.push[text];
             }
         }
+        console.log("Results: ", results);
+        results = results.join("");
+        console.log("Results joined: ", results);
         results = results.join("");
         if (typeof (callback) == "function") {
             callback(results);
@@ -84,6 +87,7 @@ var shelf = {
     },
 
     deliver: function (bot, channel, message, delay) {
+        console.log("DELIVERING:", message);
         setTimeout(function () {
             bot.sendMessage(channel, message);
         }, delay);
