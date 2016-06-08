@@ -23,7 +23,7 @@ var shelf = {
     init: function () {
         // make this build from the dir structure in the future
 
-        shelf.diretoryTreeToObj(where, function (err, res) {
+        shelf.diretoryTreeToObj(shelf.dataFolder, function (err, res) {
             if (err)
                 console.error(err);
             var types = res;
