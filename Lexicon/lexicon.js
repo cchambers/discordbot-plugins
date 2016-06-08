@@ -86,7 +86,7 @@ var shelf = {
         if (total.length == 1) {
             var file = shelf.dataFolder + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
             console.log("get:", file);
-            fs.readFile(filename, 'utf8', function (err, data) {
+            fs.readFile(file, 'utf8', function (err, data) {
                 if (err) throw err;
                 results = data;
                 callback(results);
