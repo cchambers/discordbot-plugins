@@ -125,11 +125,6 @@ var shelf = {
 
         results = results.join("");
 
-        if (total.length == 0) {
-            bot.sendMessage(msg.channel, "Nothing in my database matches that query...");
-            return;
-        }
-
         if (total.length == 1 || perfect) {
             var thing = perfect || total[0];
             thing = thing.replace(/\s/g, "-");
@@ -152,6 +147,12 @@ var shelf = {
                 callback(results);
             });
         } else {
+            console.log("Nothing?", total);
+
+            if (total.length == 0) {
+                bot.sendMessage(msg.channel, "Nothing in my database matches that query...");
+                return;
+            }
 
             if (typeof (callback) == "function") {
                 callback(results);
