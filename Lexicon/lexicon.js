@@ -18,6 +18,8 @@ var lexicon = {
     spells: []
 }
 
+var types = [];
+
 var dataList;
 var dataFolder = directory + '/data';
 
@@ -57,22 +59,31 @@ function getTreeData(which, where) {
     });
 }
 
-function search(term) {
+function search(term, callback) {
     var results = [];
     for (var array in lexicon) {
-        var matches = array.filter(function (entry) {
+        types.push(array);
+        var matches = lexicon[array].filter(function (entry) {
             return entry.toLowerCase().indexOf(term) !== -1;
         });
         console.log("><><>< matches:", matches);
         results.push[matches];
     }
-    console.log("FOUND:", results);
+    console.log(types);
     return results;
 }
 
 for (var type in lexicon) {
     var where = dataFolder + "/" + type;
     getTreeData(type, where);
+}
+
+function handleCatSearch () {
+
+}
+
+function handleSearch (data) {
+    console.log("Handled:", data);
 }
 
 exports.commands = [
@@ -90,9 +101,9 @@ exports.race = {
             return;
         }
 
-        var results = search(dataList, term);
-        var others = [];
-    
+        var results = search(term, handleSearch);
+        // var others = [];
+
         // if (results.length != 0) {
         //     var perfect = results.indexOf(args.toLowerCase().replace(/\s/g, "-"));
         //     if (perfect >= 0) {
@@ -104,21 +115,19 @@ exports.race = {
         //     if (results.length > 1) {
         //         bot.sendMessage(msg.channel, "I found **" + results.length + "** results matching that term: ```" + results.join(", ") + "```");
         //     } else {
-        //         bot.sendMessage(msg.channel, "I totally found that thing you were looking for:" + results);
-        //         // pull file data
-        //         // var file = results[0].replace(/\s/g, "-") + ".markdown";
-        //         // var filename = '/home/discordbot/plugins/Races/data/' + file;
-        //         // console.log("Trying to pull " + filename);
-        //         // fs.readFile(filename, 'utf8', function (err, data) {
-        //         //     if (err) throw err;
-        //         //     var meat = data;
-        //         //     if (others.length > 0) {
-        //         //         bot.sendMessage(msg.channel, "I found **" + others.length + "** other results matching that term: ```" + others.join(", ") + "```");
-        //         //     }
-        //         //     setTimeout(function () {
-        //         //         bot.sendMessage(msg.channel, meat);
-        //         //     }, 200);
-        //         // });
+        //         var file = results[0].replace(/\s/g, "-") + ".markdown";
+        //         var filename = '/home/discordbot/plugins/Races/data/' + file;
+        //         console.log("Trying to pull " + filename);
+        //         fs.readFile(filename, 'utf8', function (err, data) {
+        //             if (err) throw err;
+        //             var meat = data;
+        //             if (others.length > 0) {
+        //                 bot.sendMessage(msg.channel, "I found **" + others.length + "** other results matching that term: ```" + others.join(", ") + "```");
+        //             }
+        //             setTimeout(function () {
+        //                 bot.sendMessage(msg.channel, meat);
+        //             }, 200);
+        //         });
         //     }
         // } else {
         //     bot.sendMessage(msg.channel, "I have nothing on that...");
