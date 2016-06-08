@@ -125,16 +125,6 @@ var shelf = {
 
         results = results.join("");
 
-        if (term == "") {
-            var array = [];
-            for (var item in shelf.lexicon) {
-                array.push(item);
-            }
-            var moreInfo = "I have information for these categories: ```" + array.join(", ") + "```");
-            callback(moreInfo);
-            return;
-        }
-
         if (total.length == 1 || perfect) {
             var thing = perfect || total[0];
             thing = thing.replace(/\s/g, "-");
@@ -195,8 +185,11 @@ exports.find = {
     description: "Returns data on whatever it finds.",
     process: function (bot, msg, args) {
         var term = args.toLowerCase().replace(/\s/g, "-");
-        if (term == "") {
-            bot.sendMessage(msg.channel, "The correct syntax is `!find <query>`");
+        if (term == "") { var array = [];
+            for (var item in shelf.lexicon) {
+                array.push(item);
+            }
+            bot.sendMessage(msg.channel, "The correct syntax is `!find <query>` -- I have information for these categories: ```" + array.join(", ") + "```");
             return;
         }
 
