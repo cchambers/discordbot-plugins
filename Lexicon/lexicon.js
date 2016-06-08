@@ -127,7 +127,7 @@ var shelf = {
                 console.log(t, wheres);
                 activeDirectory = wheres[t];
             }
-            var file = __dirname + "/" + activeDirectory + "/" + thing + ".markdown";
+            var file = __dirname + "/data/" + activeDirectory + "/" + thing + ".markdown";
             console.log("trying:", file);
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) throw err;
