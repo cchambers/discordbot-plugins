@@ -22,10 +22,19 @@ var shelf = {
 
     init: function () {
         // make this build from the dir structure in the future
-        for (var type in shelf.lexicon) {
-            var where = shelf.dataFolder + "/" + type;
-            shelf.getTreeData(type, where);
-        }
+
+        shelf.diretoryTreeToObj(where, function (err, res) {
+            if (err)
+                console.error(err);
+            var types = res;
+            for (var type in types) {
+                shelf.lexicon[type] = [];
+                var where = shelf.dataFolder + "/" + type;
+                shelf.getTreeData(type, where);
+            }
+        });
+
+        
     },
 
     diretoryTreeToObj: function (dir, done) {
