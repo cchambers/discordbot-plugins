@@ -8,21 +8,21 @@ var shelf = {
     directory: __dirname,
     lexicon: {},
 
-    dataFolder: __dirname + '/data',
-
     init: function () {
         // make this build from the dir structure in the future
+console.log("Init...");
 
-        console.log("Trying to map", shelf.dataFolder);
+        var dataDir = __dirname + "/data";
+        console.log(dataDir);
 
-        shelf.diretoryTreeToObj(shelf.dataFolder, function (err, res) {
+        shelf.diretoryTreeToObj(dataDir, function (err, res) {
         console.log("Mapping..", shelf.dataFolder);
             if (err)
                 console.error(err);
             var types = res;
             for (var type in types) {
                 shelf.lexicon[type] = [];
-                var where = shelf.dataFolder + "/" + type;
+                var where = dataDir + "/" + type;
                 shelf.getTreeData(type, where);
             }
             console.log("Welp: ", shelf.lexicon);
@@ -115,6 +115,7 @@ var shelf = {
     }
 }
 
+console.log("Trying to init...");
 shelf.init();
 
 exports.commands = [
