@@ -23,7 +23,7 @@ var shelf = {
                 var where = dataDir + "/" + name;
                 shelf.getTreeData(name, where);
             }
-            console.log("Lexicon categories loaded: ", shelf.lexicon.join(", "));
+            console.log("Lexicon categories loaded: " + shelf.lexicon.join(", "));
         });
     },
 
@@ -180,7 +180,7 @@ exports.finds = {
     usage: "",
     description: "Short explaination of the Lexicon.",
     process: function (bot, msg, args) {
-            
+            bot.sendMessage(msg.channel, "Get you some of this: ```" + shelf.lexicon.join(", ") + "```");
         return;
     }
 }
