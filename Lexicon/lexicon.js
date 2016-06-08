@@ -15,9 +15,9 @@ var shelf = {
         var dataDir = __dirname + "/data";
         console.log(dataDir);
 
-        shelf.diretoryTreeToObj(dataDir, function (err, res) {
-            if (err)
-                console.error(err);
+        shelf.getCategories(dataDir, function (err, res) {
+            if (err) console.log(err);
+
             console.log(res);
             var types = res;
             // for (var type in types) {
@@ -27,6 +27,28 @@ var shelf = {
             // }
             // console.log("Welp: ", shelf.lexicon);
         });
+    },
+
+    getCategories: function (dir, done) {
+        var results = [];
+        fs.readdir(dir, function (err, list) {
+            if (err)
+                return done(err);
+
+            var pending = list.length;
+            if (!pending)
+                return done(null, { name: path.basename(dir), type: 'folder', children: results });
+
+            list.forEach(function (file) {
+                file = path.resolve(dir, file);
+                fs.stat(file, function (err, stat) {
+                    var filename = path.basename(file)
+                    results.push(filename.substr(0, filename.length - 9));
+                    if (!--pending)
+                        done(null, results);
+                });
+            });
+        })
     },
 
     diretoryTreeToObj: function (dir, done) {
