@@ -68,7 +68,10 @@ var shelf = {
                 return entry.toLowerCase().indexOf(term) !== -1;
             });
             if (matches.length > 0) {
-                var text = ("**" + array.toUpperCase() + "**: ```" + matches.join(", ") + "```");
+                console.log("matches:" + matches);
+                var which = array.toUpperCase();
+                var text = ("**" + which + "**: ```" + matches.join(", ") + "```");
+                console.log(text);
                 results.push[text];
             }
         }
