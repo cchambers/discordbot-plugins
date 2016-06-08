@@ -26,6 +26,19 @@ var shelf = {
         });
     },
 
+    transformMap: {
+        spells: function (data) {
+            var edits = data.split("---");
+            var title = results[0].toUpperCase();
+            // var tags = edits[1].match(/(?:tags:\s+")(.+)(?:")/g);
+            var tags = edits[1].split("tags:")[1];
+            var meat = edits[2];
+            var cleaned = "__**" + title + "**__ ```" + tags + "``` " + meat;
+            return cleaned;
+        }
+
+    },
+
     getCategories: function (dir, done) {
         var results = [];
         fs.readdir(dir, function (err, list) {
@@ -124,6 +137,9 @@ var shelf = {
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) throw err;
                 results = data;
+                if (activeDirectory == "spells") {
+                    results = shelf.transformMap.spells(results);
+                }
                 callback(results);
             });
         } else {
@@ -179,7 +195,7 @@ exports.finds = {
     usage: "",
     description: "Short explaination of the Lexicon.",
     process: function (bot, msg, args) {
-            bot.sendMessage(msg.channel, "Get you some of this: ```" + shelf.lexicon.join(", ") + "```");
+        bot.sendMessage(msg.channel, "Get you some of this: ```" + shelf.lexicon.join(", ") + "```");
         return;
     }
 }
