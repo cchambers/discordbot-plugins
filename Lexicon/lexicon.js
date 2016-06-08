@@ -123,7 +123,9 @@ var shelf = {
             var thing = perfect || total[0];
             thing = thing.replace(/\s/g, "-");
             if (perfect) {
-                activeDirectory = wheres[total.indexOf(perfect)];
+                var t = total.indexOf(perfect);
+                console.log(t, wheres);
+                activeDirectory = wheres[t];
             }
             var file = __dirname + "/" + activeDirectory + "/" + thing + ".markdown";
             console.log("trying:", file);
