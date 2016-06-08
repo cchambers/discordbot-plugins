@@ -17,7 +17,6 @@ var shelf = {
         shop: [],
         spells: []
     },
-    dataList,
     dataFolder: shelf.directory + '/data',
     init: function () {
         // make this build from the dir structure in the future
@@ -107,9 +106,6 @@ shelf.init();
 //     spells: []
 // }
 
-// var types = [];
-
-// var dataList;
 // var dataFolder = directory + '/data';
 
 // function diretoryTreeToObj(dir, done) {
