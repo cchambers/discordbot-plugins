@@ -99,7 +99,7 @@ var shelf = {
             if (matches.length > 0) {
                 activeDirectory = array;
                 for (var i = 0; i < matches.length; i++) {
-                    wheres[i] = array;
+                    wheres.push(activeDirectory);
                 }
                 total = total.concat(matches);
                 var which = array.toUpperCase();
