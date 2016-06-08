@@ -197,7 +197,7 @@ exports.finds = {
     description: "Short explaination of the Lexicon.",
     process: function (bot, msg, args) {
         var array = [];
-        for (var item in lexicon) {
+        for (var item in shelf.lexicon) {
             array.push(item);
         }
         bot.sendMessage(msg.channel, "I have information for these categories: ```" + array.join(", ") + "```");
