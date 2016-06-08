@@ -123,6 +123,10 @@ var shelf = {
             }
         }
 
+        if (total.length == 0) {
+            return false;
+        }
+
         results = results.join("");
 
         if (total.length == 1 || perfect) {
@@ -147,9 +151,6 @@ var shelf = {
                 callback(results);
             });
         } else {
-            if (total.length == 0) {
-
-            }
 
             if (typeof (callback) == "function") {
                 callback(results);
@@ -185,7 +186,8 @@ exports.find = {
     description: "Returns data on whatever it finds.",
     process: function (bot, msg, args) {
         var term = args.toLowerCase().replace(/\s/g, "-");
-        if (term == "") { var array = [];
+        if (term == "") {
+            var array = [];
             for (var item in shelf.lexicon) {
                 array.push(item);
             }
@@ -194,7 +196,11 @@ exports.find = {
         }
 
         var results = shelf.search(term, function (data) {
-            shelf.deliver(bot, msg.channel, data);
+            if (data == false) {
+                bot.sendMessage(msg.channel, "I have no data on that term.");
+            } else {
+                shelf.deliver(bot, msg.channel, data);
+            }
         });
 
     }
