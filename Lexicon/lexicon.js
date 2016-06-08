@@ -81,11 +81,8 @@ var shelf = {
 
         results = results.join("");
 
-        console.log("totals: ", total);
-
         if (total.length == 1) {
             var file = shelf.dataFolder + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
-            console.log("get:", file);
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) throw err;
                 results = data;
@@ -103,7 +100,6 @@ var shelf = {
     },
 
     deliver: function (bot, channel, message) {
-        console.log("DELIVERING?")
         var messages = message.split("===");
         for (var x = 0; x < messages.length; x++) {
             var delay = 500 * x;
