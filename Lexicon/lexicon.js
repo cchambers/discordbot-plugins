@@ -81,13 +81,15 @@ var shelf = {
 
         results = results.join("");
 
+        console.log("totals: ", total);
+
         if (total.length === 1) {
             var file = shelf.dataFolder + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
-            fs.readFile(filename, 'utf8', function (err, data) {
-                if (err) throw err;
-
-                results = data;
-            });
+            console.log("get:", file);
+            // fs.readFile(filename, 'utf8', function (err, data) {
+            //     if (err) throw err;
+            //     results = data;
+            // });
         }
 
         if (typeof (callback) == "function") {
