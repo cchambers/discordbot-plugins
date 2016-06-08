@@ -104,11 +104,13 @@ var shelf = {
             }
         }
 
-        results = results.join("");
 
-        for (var x = 0; x < results.length; x++) {
-            if (results[x] == term) perfect = true;
+        for (var x = 0; x < total.length; x++) {
+            console.log(total[x] + "vs" + term);
+            if (total[x] == term) perfect = true;
         }
+
+        results = results.join("");
 
         if (total.length == 1 || perfect) {
             var file = shelf.dataFolder + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
