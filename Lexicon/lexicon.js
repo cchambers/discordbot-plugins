@@ -83,7 +83,7 @@ var shelf = {
 
         console.log("totals: ", total);
 
-        if (total.length === 1) {
+        if (total.length == 1) {
             var file = shelf.dataFolder + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
             console.log("get:", file);
             // fs.readFile(filename, 'utf8', function (err, data) {
@@ -100,7 +100,8 @@ var shelf = {
 
     },
 
-    deliver: function (bot, channel, message, delay) {
+    deliver: function (bot, channel, message) {
+        console.log("DELIVERING?")
         var messages = message.split("===");
         for (var x = 0; x < messages.length; x++) {
             var delay = 500 * x;
@@ -134,7 +135,7 @@ exports.find = {
         }
 
         var results = shelf.search(term, function (data) {
-            shelf.deliver(bot, msg.channel, data, 0);
+            shelf.deliver(bot, msg.channel, data);
         });
 
     }
