@@ -18,14 +18,13 @@ var shelf = {
         shelf.getCategories(dataDir, function (err, res) {
             if (err) console.log(err);
 
-            console.log(res);
-            var types = res;
-            // for (var type in types) {
-            //     shelf.lexicon[type] = [];
-            //     var where = dataDir + "/" + type;
-            //     shelf.getTreeData(type, where);
-            // }
-            // console.log("Welp: ", shelf.lexicon);
+            shelf.lexicon = res;
+            for (var type in shelf.lexicon) {
+                shelf.lexicon[type] = [];
+                var where = dataDir + "/" + type;
+                shelf.getTreeData(type, where);
+            }
+            console.log("Welp: ", shelf.lexicon);
         });
     },
 
