@@ -17,7 +17,7 @@ var shelf = {
         shop: [],
         spells: []
     },
-    dataFolder: shelf.directory + '/data',
+    dataFolder: __dirname + '/data',
     init: function () {
         // make this build from the dir structure in the future
         for (var type in shelf.lexicon) {
