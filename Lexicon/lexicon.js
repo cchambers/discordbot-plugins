@@ -91,7 +91,7 @@ exports.commands = [
     "finds"
 ];
 
-exports.race = {
+exports.find = {
     usage: "<search query>",
     description: "Returns data on whatever it finds.",
     process: function (bot, msg, args) {
