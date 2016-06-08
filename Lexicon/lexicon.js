@@ -110,14 +110,12 @@ var shelf = {
 
 
         for (var x = 0; x < total.length; x++) {
-            console.log(total[x] + "vs" + term);
             if (total[x] == term) {
                 perfect = term;
             }
         }
 
         results = results.join("");
-            console.log("PERFECT!", perfect)
 
         if (total.length == 1 || perfect) {
             var thing = perfect || total[0];
@@ -128,7 +126,6 @@ var shelf = {
                 activeDirectory = wheres[t];
             }
             var file = __dirname + "/data/" + activeDirectory + "/" + thing + ".markdown";
-            console.log("trying:", file);
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) throw err;
                 results = data;
@@ -158,7 +155,7 @@ var shelf = {
         }, delay);
     }
 }
-!
+
 shelf.init();
 
 exports.commands = [
@@ -183,12 +180,11 @@ exports.find = {
     }
 }
 
-
 exports.finds = {
     usage: "",
     description: "Short explaination of the Lexicon.",
     process: function (bot, msg, args) {
-        // finds what?
+            bot.sendMessage(msg.channel, "Get you some of this: ```" + shelf.lexicon.join(", ") + "```");
         return;
     }
 }
