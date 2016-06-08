@@ -79,7 +79,7 @@ var shelf = {
         }
     },
 
-    deliver: function (channel, message, delay) {
+    deliver: function (bot, channel, message, delay) {
         setTimeout(function () {
             bot.sendMessage(channel, message);
         }, delay);
@@ -108,7 +108,7 @@ exports.find = {
         }
 
         var results = shelf.search(term, function (data) {
-            shelf.deliver(msg.channel, "data:" + data.toString(), 0);
+            shelf.deliver(bot, msg.channel, "data:" + data.toString(), 0);
         });
     
     }
