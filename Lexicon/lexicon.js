@@ -86,10 +86,10 @@ var shelf = {
         if (total.length == 1) {
             var file = shelf.dataFolder + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
             console.log("get:", file);
-            // fs.readFile(filename, 'utf8', function (err, data) {
-            //     if (err) throw err;
-            //     results = data;
-            // });
+            fs.readFile(filename, 'utf8', function (err, data) {
+                if (err) throw err;
+                results = data;
+            });
         }
 
         if (typeof (callback) == "function") {
@@ -105,7 +105,6 @@ var shelf = {
         var messages = message.split("===");
         for (var x = 0; x < messages.length; x++) {
             var delay = 500 * x;
-            var channel = msg.channel;
             shelf.sendMessage(bot, channel, messages[x], delay);
         }
     },
