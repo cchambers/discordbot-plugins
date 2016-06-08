@@ -134,7 +134,7 @@ var shelf = {
             } else if (total.length > 1) {
                 var pos = total.indexOf(thing);
                 var others = total.slice(thing, thing);
-                bot.sendMessage(msg.channel, "I found other items matching that query: ```" + others.join(", ") + "```");
+                // "I found other items matching that query: ```" + others.join(", ") + "```");
             }
             var file = __dirname + "/data/" + activeDirectory + "/" + thing + ".markdown";
             fs.readFile(file, 'utf8', function (err, data) {
@@ -150,8 +150,7 @@ var shelf = {
             console.log("Nothing?", total);
 
             if (total.length == 0) {
-                bot.sendMessage(msg.channel, "Nothing in my database matches that query...");
-                return;
+                return "Nothing in my database matches that query...";
             }
 
             if (typeof (callback) == "function") {
