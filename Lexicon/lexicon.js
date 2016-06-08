@@ -57,7 +57,6 @@ var shelf = {
             if (err)
                 console.error(err);
             shelf.lexicon[which] = res;
-            console.log(which, shelf.lexicon[which].length);
         });
     },
 
@@ -68,14 +67,12 @@ var shelf = {
                 return entry.toLowerCase().indexOf(term) !== -1;
             });
             if (matches.length > 0) {
-                console.log("matches:" + matches);
                 var which = array.toUpperCase();
                 var text = ("***" + which + "***: ```" + matches.join(", ") + "```");
                 results.push(text);
             }
         }
         results = results.join("");
-        console.log("Results: ", results);
         if (typeof (callback) == "function") {
             callback(results);
         } else {
@@ -113,8 +110,7 @@ exports.find = {
         }
 
         var results = shelf.search(term, function (data) {
-            console.log("search data:", data);
-            shelf.deliver(bot, msg.channel, "Here's what I've got:" + data, 0);
+            shelf.deliver(bot, msg.channel, "```Here's what I've got:``` " + data, 0);
         });
     
     }
