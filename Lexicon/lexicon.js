@@ -23,7 +23,6 @@ var shelf = {
                 var where = dataDir + "/" + name;
                 shelf.getTreeData(name, where);
             }
-            console.log("Lexicon categories loaded: " + shelf.lexicon.join(", "));
         });
     },
 
