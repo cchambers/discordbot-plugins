@@ -89,13 +89,15 @@ var shelf = {
             fs.readFile(filename, 'utf8', function (err, data) {
                 if (err) throw err;
                 results = data;
+                callback(results);
             });
-        }
-
-        if (typeof (callback) == "function") {
-            callback(results);
         } else {
-            return results;
+
+            if (typeof (callback) == "function") {
+                callback(results);
+            } else {
+                return results;
+            }
         }
 
     },
