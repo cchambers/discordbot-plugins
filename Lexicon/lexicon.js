@@ -17,7 +17,9 @@ var shelf = {
         shop: [],
         spells: []
     },
+    
     dataFolder: __dirname + '/data',
+
     init: function () {
         // make this build from the dir structure in the future
         for (var type in shelf.lexicon) {
@@ -68,7 +70,7 @@ var shelf = {
             });
             if (matches.length > 0) {
                 var which = array.toUpperCase();
-                var text = ("***" + which + "***: ```" + matches.join(", ") + "```");
+                var text = ("***In " + which + "*** ```" + matches.join(", ") + "```");
                 results.push(text);
             }
         }
@@ -81,14 +83,9 @@ var shelf = {
     },
 
     deliver: function (bot, channel, message, delay) {
-        console.log("DELIVERING:", message);
         setTimeout(function () {
             bot.sendMessage(channel, message);
         }, delay);
-    },
-
-    searchHandler: function (data) {
-        console.log("Handled:", data);
     }
 }
 
@@ -110,7 +107,7 @@ exports.find = {
         }
 
         var results = shelf.search(term, function (data) {
-            shelf.deliver(bot, msg.channel, "```Here's what I've got:``` " + data, 0);
+            shelf.deliver(bot, msg.channel, data, 0);
         });
     
     }
