@@ -108,8 +108,7 @@ var shelf = {
         for (var x = 0; x < total.length; x++) {
             console.log(total[x] + "vs" + term);
             if (total[x] == term) {
-                perfect = true;
-                break;
+                perfect = term;
             }
         }
 
