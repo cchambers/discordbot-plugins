@@ -27,9 +27,9 @@ var shelf = {
     },
 
     transformMap: {
-        spells: function (data) {
+        spells: function (title, data) {
             var edits = data.split("---");
-            var title = results[0].toUpperCase();
+            title = title.toUpperCase();
             // var tags = edits[1].match(/(?:tags:\s+")(.+)(?:")/g);
             var tags = edits[1].split("tags:")[1];
             var meat = edits[2];
@@ -138,7 +138,8 @@ var shelf = {
                 if (err) throw err;
                 results = data;
                 if (activeDirectory == "spells") {
-                    results = shelf.transformMap.spells(results);
+                    var title = thing.replace(/-/g, " ");
+                    results = shelf.transformMap.spells(title, results);
                 }
                 callback(results);
             });
