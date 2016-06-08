@@ -117,7 +117,6 @@ var shelf = {
             }
         }
 
-
         for (var x = 0; x < total.length; x++) {
             if (total[x] == term) {
                 perfect = term;
@@ -126,12 +125,21 @@ var shelf = {
 
         results = results.join("");
 
+        if (total.length == 0) {
+            bot.sendMessage(msg.channel, "Nothing in my database matches that query...");
+            return;
+        }
+
         if (total.length == 1 || perfect) {
             var thing = perfect || total[0];
             thing = thing.replace(/\s/g, "-");
             if (perfect) {
                 var t = total.indexOf(perfect);
                 activeDirectory = wheres[t];
+            } else if (total.length > 1) {
+                var pos = total.indexOf(thing);
+                var others = total.slice(thing, thing);
+                bot.sendMessage(msg.channel, "I found other items matching that query: ```" + others.join(", ") + "```");
             }
             var file = __dirname + "/data/" + activeDirectory + "/" + thing + ".markdown";
             fs.readFile(file, 'utf8', function (err, data) {
