@@ -18,8 +18,8 @@ var shelf = {
         shelf.getCategories(dataDir, function (err, res) {
             if (err) console.log(err);
 
-            shelf.lexicon = res;
-            for (var type in shelf.lexicon) {
+            var types = res;
+            for (var type in types) {
                 shelf.lexicon[type] = [];
                 var where = dataDir + "/" + type;
                 shelf.getTreeData(type, where);
