@@ -10,15 +10,12 @@ var shelf = {
 
     init: function () {
         // make this build from the dir structure in the future
-        console.log("Init...");
 
         var dataDir = __dirname + "/data";
-        console.log(dataDir);
 
         shelf.getCategories(dataDir, function (err, res) {
             if (err) console.log(err);
 
-            console.log(res);
             var types = res;
             for (var type in types) {
                 var name = types[type];
@@ -26,7 +23,7 @@ var shelf = {
                 var where = dataDir + "/" + name;
                 shelf.getTreeData(name, where);
             }
-            console.log("Lexicon categories loaded: ", shelf.lexicon);
+            console.log("Lexicon categories loaded: ", shelf.lexicon.join(", "));
         });
     },
 
@@ -122,7 +119,6 @@ var shelf = {
             thing = thing.replace(/\s/g, "-");
             if (perfect) {
                 var t = total.indexOf(perfect);
-                console.log(t, wheres);
                 activeDirectory = wheres[t];
             }
             var file = __dirname + "/data/" + activeDirectory + "/" + thing + ".markdown";
