@@ -20,12 +20,13 @@ var shelf = {
 
             console.log(res);
             var types = res;
-            // for (var type in types) {
-            //     shelf.lexicon[type] = [];
-            //     var where = dataDir + "/" + type;
-            //     shelf.getTreeData(type, where);
-            // }
-            // console.log("Welp: ", shelf.lexicon);
+            for (var type in types) {
+                var name = types[type];
+                shelf.lexicon[name] = [];
+                var where = dataDir + "/" + name;
+                shelf.getTreeData(name, where);
+            }
+            console.log("Lexicon categories loaded: ", shelf.lexicon);
         });
     },
 
