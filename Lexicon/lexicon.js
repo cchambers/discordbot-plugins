@@ -116,6 +116,7 @@ var shelf = {
 
         if (total.length == 1 || perfect) {
             var file = ___dirname + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
+            console.log("trying:", file);
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) throw err;
                 results = data;
