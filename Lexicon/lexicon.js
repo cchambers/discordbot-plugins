@@ -89,6 +89,7 @@ var shelf = {
     search: function (term, callback) {
         var results = [];
         var total = [];
+        var wheres = [];
         var activeDirectory;
         var perfect = false;
         for (var array in shelf.lexicon) {
@@ -97,6 +98,9 @@ var shelf = {
             });
             if (matches.length > 0) {
                 activeDirectory = array;
+                for (var i = 0; i < matches.length; i++) {
+                    wheres[i] = array;
+                }
                 total = total.concat(matches);
                 var which = array.toUpperCase();
                 var text = ("**in *" + which + "*...** ```" + matches.join(", ") + "```");
@@ -118,6 +122,9 @@ var shelf = {
         if (total.length == 1 || perfect) {
             var thing = perfect || total[0];
             thing = thing.replace(/\s/g, "-");
+            if (perfect) {
+                activeDirectory = wheres[total.indexOf(perfect)];
+            }
             var file = __dirname + "/" + activeDirectory + "/" + thing + ".markdown";
             console.log("trying:", file);
             fs.readFile(file, 'utf8', function (err, data) {
