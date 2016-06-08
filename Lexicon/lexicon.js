@@ -6,17 +6,7 @@ var path = require('path');
 
 var shelf = {
     directory: __dirname,
-    lexicon: {
-        backgrounds: [],
-        classes: [],
-        conditions: [],
-        feats: [],
-        info: [],
-        monsters: [],
-        races: [],
-        shop: [],
-        spells: []
-    },
+    lexicon: {},
 
     dataFolder: __dirname + '/data',
 
@@ -32,9 +22,8 @@ var shelf = {
                 var where = shelf.dataFolder + "/" + type;
                 shelf.getTreeData(type, where);
             }
+            console.log("Welp: ", shelf.lexicon);
         });
-
-        
     },
 
     diretoryTreeToObj: function (dir, done) {
