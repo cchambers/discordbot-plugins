@@ -90,6 +90,7 @@ var shelf = {
         var results = [];
         var total = [];
         var activeDirectory;
+        var perfect = false;
         for (var array in shelf.lexicon) {
             var matches = shelf.lexicon[array].filter(function (entry) {
                 return entry.toLowerCase().indexOf(term) !== -1;
@@ -105,7 +106,11 @@ var shelf = {
 
         results = results.join("");
 
-        if (total.length == 1) {
+        for (var x = 0; x < results.length; x++) {
+            if (results[x] == term) perfect = true;
+        }
+
+        if (total.length == 1 || perfect) {
             var file = shelf.dataFolder + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) throw err;
@@ -120,7 +125,6 @@ var shelf = {
                 return results;
             }
         }
-
     },
 
     deliver: function (bot, channel, message) {
@@ -137,8 +141,7 @@ var shelf = {
         }, delay);
     }
 }
-
-console.log("Trying to init...");
+!
 shelf.init();
 
 exports.commands = [
