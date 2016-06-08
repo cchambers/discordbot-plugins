@@ -113,7 +113,7 @@ var shelf = {
         results = results.join("");
 
         if (total.length == 1 || perfect) {
-            var file = shelf.dataFolder + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
+            var file = ___dirname + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
             fs.readFile(file, 'utf8', function (err, data) {
                 if (err) throw err;
                 results = data;
