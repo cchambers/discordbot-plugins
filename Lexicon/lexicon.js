@@ -17,7 +17,7 @@ var shelf = {
         shop: [],
         spells: []
     },
-    
+
     dataFolder: __dirname + '/data',
 
     init: function () {
@@ -64,25 +64,50 @@ var shelf = {
 
     search: function (term, callback) {
         var results = [];
+        var total = [];
+        var activeDirectory;
         for (var array in shelf.lexicon) {
             var matches = shelf.lexicon[array].filter(function (entry) {
                 return entry.toLowerCase().indexOf(term) !== -1;
             });
             if (matches.length > 0) {
+                activeDirectory = array;
+                total = total.concat(matches);
                 var which = array.toUpperCase();
-                var text = ("***In " + which + "*** ```" + matches.join(", ") + "```");
+                var text = ("**in *" + which + "*...** ```" + matches.join(", ") + "```");
                 results.push(text);
             }
         }
+
         results = results.join("");
+
+        if (total.length === 1) {
+            var file = shelf.dataFolder + "/" + activeDirectory + "/" + total[0].replace(/\s/g, "-") + ".markdown";
+            fs.readFile(filename, 'utf8', function (err, data) {
+                if (err) throw err;
+
+                results = data;
+            });
+        }
+
         if (typeof (callback) == "function") {
             callback(results);
         } else {
             return results;
         }
+
     },
 
     deliver: function (bot, channel, message, delay) {
+        var messages = message.split("===");
+        for (var x = 0; x < messages.length; x++) {
+            var delay = 500 * x;
+            var channel = msg.channel;
+            shelf.sendMessage(bot, channel, messages[x], delay);
+        }
+    },
+
+    sendMessage: function (bot, channel, message, delay) {
         setTimeout(function () {
             bot.sendMessage(channel, message);
         }, delay);
@@ -109,7 +134,7 @@ exports.find = {
         var results = shelf.search(term, function (data) {
             shelf.deliver(bot, msg.channel, data, 0);
         });
-    
+
     }
 }
 
