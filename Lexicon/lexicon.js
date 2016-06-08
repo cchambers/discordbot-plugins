@@ -43,7 +43,7 @@ var shelf = {
                 file = path.resolve(dir, file);
                 fs.stat(file, function (err, stat) {
                     var filename = path.basename(file)
-                    results.push(filename.substr(0, filename.length - 9));
+                    results.push(filename);
                     if (!--pending)
                         done(null, results);
                 });
