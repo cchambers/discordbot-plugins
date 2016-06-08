@@ -10,22 +10,22 @@ var shelf = {
 
     init: function () {
         // make this build from the dir structure in the future
-console.log("Init...");
+        console.log("Init...");
 
         var dataDir = __dirname + "/data";
         console.log(dataDir);
 
         shelf.diretoryTreeToObj(dataDir, function (err, res) {
-        console.log("Mapping..", shelf.dataFolder);
             if (err)
                 console.error(err);
+            console.log(res);
             var types = res;
-            for (var type in types) {
-                shelf.lexicon[type] = [];
-                var where = dataDir + "/" + type;
-                shelf.getTreeData(type, where);
-            }
-            console.log("Welp: ", shelf.lexicon);
+            // for (var type in types) {
+            //     shelf.lexicon[type] = [];
+            //     var where = dataDir + "/" + type;
+            //     shelf.getTreeData(type, where);
+            // }
+            // console.log("Welp: ", shelf.lexicon);
         });
     },
 
