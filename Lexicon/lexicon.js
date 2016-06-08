@@ -196,7 +196,11 @@ exports.finds = {
     usage: "",
     description: "Short explaination of the Lexicon.",
     process: function (bot, msg, args) {
-        bot.sendMessage(msg.channel, "Get you some of this: ```" + shelf.lexicon.join(", ") + "```");
+        var array = [];
+        for (var item in lexicon) {
+            array.push(item);
+        }
+        bot.sendMessage(msg.channel, "I have information for these categories: ```" + array.join(", ") + "```");
         return;
     }
 }
