@@ -68,11 +68,11 @@ var shelf = {
                 return entry.toLowerCase().indexOf(term) !== -1;
             });
             if (matches.length > 0) {
-                text = ("**" + array.toUpperCase() + "**: ```" + matches.join() + "```");
+                var text = ("**" + array.toUpperCase() + "**: ```" + matches.join(", ") + "```");
                 results.push[text];
             }
         }
-        results.join("");
+        results = results.join("");
         if (typeof (callback) == "function") {
             callback(results);
         } else {
@@ -109,6 +109,7 @@ exports.find = {
         }
 
         var results = shelf.search(term, function (data) {
+            console.log("search data:", data);
             shelf.deliver(bot, msg.channel, "Here's what I've got:" + data, 0);
         });
     
