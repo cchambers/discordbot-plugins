@@ -6,6 +6,7 @@ When a creature receives healing of any kind, hit points regained are added to i
 A creature that has died can’t regain hit points until magic such as the Revivify spell has restored it to life.
 
 ***Resting Healing***
+
 **Short Rest**
 A character can spend one or more Hit Dice at the end of a short rest, up to the character’s maximum number of Hit Dice, which is equal to the character's level. For each Hit Die spent in this way, the player rolls the die and adds the character’s Constitution modifier to it. The character regains hit points equal to the total. The player can decide to spend an additional Hit Die after each roll. 
 
